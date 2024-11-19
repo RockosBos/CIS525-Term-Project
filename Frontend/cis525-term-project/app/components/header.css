@@ -1,0 +1,26 @@
+.header{
+	background-color: lightblue;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.login{
+	float: right;
+}
+.login-item{
+	margin-right: 10px;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+#new-account-button{
+	background-color: lightgreen;
+}
+
+#login-button{
+	background-color: lightgreen;
+}
+
+#admin-page-button{
+	background-color: red;
+	color: white;
+}
