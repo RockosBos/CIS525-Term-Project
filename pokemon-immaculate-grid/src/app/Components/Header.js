@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
-import "./header.css";
+import "./Header.css";
+import Image from 'next/image';
 
-export default class Header extends Component {
-  render() {
+const Header = (props) => {
+
+	function toggleAdmin(){
+		if(props.admin){
+			props.adminSet(false);
+		}
+		else{
+			props.adminSet(true);
+		}
+	}
+
 	return (
 		<header className="header-bar">
-        <h1>PokéDoku</h1>
-        <div className="auth-buttons">
-          <button className="login-button">Login</button>
-          <button className="signup-button">Create Account</button>
-          <button className="admin-button">Admin</button>
-        </div>
-      </header>
+			<Image src="/temp_logo.png" alt='Immaculate Grid' width="300" height="100"/>
+			<div className="auth-buttons">
+				<button className="login-button">Login</button>
+				<button className="signup-button">Create Account</button>
+				<button className="admin-button" onClick={toggleAdmin}>Admin</button>
+				
+			</div>
+      	</header>
 	)
-  }
 }
+
+export default Header;

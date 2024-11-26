@@ -1,22 +1,24 @@
 "use client"
 
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Board from './Board';
-import Timer from './Timer';
-import Header from './Components/header.js';
-import Body from './Components/body';
+
+import Header from './Components/Header';
+import Body from './Components/Body';
+import Admin from './Components/Admin';
 import './App.css';
 
 function App() {
+
+	const [adminPage, setAdminPage] = useState(false);
   
   return (
-    <>
-      <Header />
-	  <Body />
-    </>
+    <body>
+		<Header adminSet={setAdminPage} admin={adminPage}/>
+		{!adminPage && <Body />}
+		{adminPage && <Admin />}
+		
+    </body>
   );
 }
-
 
 export default App;

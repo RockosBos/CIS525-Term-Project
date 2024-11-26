@@ -1,5 +1,4 @@
 import React, { useState, Component } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Board from '../Board';
 import Timer from '../Timer';
 import './Body.css';

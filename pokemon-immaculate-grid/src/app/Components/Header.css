@@ -17,3 +17,39 @@
 	  4px 0px 0 blue,
 	  -4px 0px 0 blue;
   }
+
+  /* Auth buttons styling */
+  .auth-buttons {
+	display: flex;
+	gap: 10px; /* Space between buttons */
+  }
+  
+  .auth-buttons button {
+	padding: 8px 16px;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: #4caf50; /* Green background */
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+  }
+  
+  .auth-buttons button:hover {
+	background-color: #388e3c; /* Darker green on hover */
+  }
+
+  .auth-buttons .admin-button{
+	background-color: red;
+	font-size: 16px;
+  }
+
+  .auth-buttons .admin-button:hover {
+	background-color: darkred;
+  }
+
+  Link{
+	display: 'contents';
+  }
+  

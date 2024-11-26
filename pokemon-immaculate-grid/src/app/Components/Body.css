@@ -195,34 +195,6 @@
 	color: #333;
   }
   
-  /* Auth buttons styling */
-  .auth-buttons {
-	display: flex;
-	gap: 10px; /* Space between buttons */
-  }
-  
-  .auth-buttons button {
-	padding: 8px 16px;
-	font-size: 16px;
-	font-weight: bold;
-	background-color: #4caf50; /* Green background */
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-  }
-  
-  .auth-buttons button:hover {
-	background-color: #388e3c; /* Darker green on hover */
-  }
-  
-  .auth-buttons button:nth-child(3){
-	background-color: #af4c4c;
-  }
-  .auth-buttons button:nth-child(3):hover{
-	background-color: #6d1616;
-  }
   .game-controls {
 	margin-bottom: 100px; /* Space between button and grid */
 	display: flex;
