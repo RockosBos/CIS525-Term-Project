@@ -1,3 +1,19 @@
 h1{
 	height: fit-content;
 }
+
+.customPuzzleDataRow{
+	display: "inline-block";
+	flex-direction: "row";
+}
+
+.adminContent{
+	width: 70%;
+}
+
+.selectProp{
+	display: inline-block;
+	width: 30%;
+	margin-right: 1.5%;
+	margin-left: 1.5%;
+}

@@ -12,12 +12,12 @@ function App() {
 	const [adminPage, setAdminPage] = useState(false);
   
   return (
-    <body>
+    <>
 		<Header adminSet={setAdminPage} admin={adminPage}/>
 		{!adminPage && <Body />}
 		{adminPage && <Admin />}
 		
-    </body>
+    </>
   );
 }
 
