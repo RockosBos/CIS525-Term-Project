@@ -1,0 +1,19 @@
+.header-bar {
+	width: 100%;
+	background: linear-gradient(90deg, #f3f0f0, #dad8d8, #f3f0f0);
+	color: yellow;
+	display: flex;
+	align-items: center;
+	justify-content: space-between; /* Push items to the edges */
+	padding: 10px;
+	font-size: 32px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 
+	  -4px -4px 0 blue,
+	  4px -4px 0 blue,
+	  -4px 4px 0 blue,
+	  4px 4px 0 blue,
+	  4px 0px 0 blue,
+	  -4px 0px 0 blue;
+  }
