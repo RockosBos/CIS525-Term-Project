@@ -15,6 +15,9 @@ const pokemonDummyData = [
 	{value: 'Bulbasaur', label: 'Bulbasaur'}
 ];
 
+const userDummyData = [
+	{}
+];
 
 const Admin = () => {
 
@@ -26,17 +29,39 @@ const Admin = () => {
 			<h2 className='customPuzzleHeader'>Customize Puzzle</h2>
 			<div className='customPuzzleData'>
 				<div className='customPuzzleDataRow'>
-					<p>Horizontal Props:</p>
+					<p className='selectText'>Horizontal Props:</p>
 					<div className='selectProp'><Select options={propDummyData} /></div>
 					<div className='selectProp'><Select options={propDummyData} /></div>
 					<div className='selectProp'><Select options={propDummyData} /></div>
 				</div>
 				<div className='customPuzzleDataRow'>
-					<p>Vertical Props:</p>
+					<p className='selectText'>Vertical Props:</p>
 					<div className='selectProp'><Select options={propDummyData} /></div>
 					<div className='selectProp'><Select options={propDummyData} /></div>
 					<div className='selectProp'><Select options={propDummyData} /></div>
 				</div>
+				<div className='customPuzzleDataRow'>
+					<p className='selectText'>Row 1:</p>
+					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+				</div>
+				<div className='customPuzzleDataRow'>
+					<p className='selectText'>Row 2:</p>
+					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+				</div>
+				<div className='customPuzzleDataRow'>
+					<p className='selectText'>Row 3:</p>
+					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+				</div>
+			</div>
+			<div className='userEdit'>
+				<h2 className='customPuzzleHeader'>Edit Users</h2>
+				<div className='selectProp'><Select options={propDummyData} /></div>
 			</div>
 		</div>
 			
