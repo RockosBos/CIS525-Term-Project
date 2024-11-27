@@ -1,0 +1,52 @@
+.adminContent{
+	background-color: lightblue;
+	border-radius: 10px;
+	padding-top: 1%;
+	padding-bottom: 1%;
+}
+
+h1{
+	height: fit-content;
+	margin: auto;
+	text-align: center;
+}
+
+h2{
+	margin: auto;
+	text-align: center;
+}
+
+.customPuzzleData{
+	margin-bottom: 5%;
+}
+
+.customPuzzleDataRow{
+	display: "inline-block";
+	flex-direction: "row";
+	
+}
+
+.adminContent{
+	width: 70%;
+}
+
+.selectProp{
+	display: inline-block;
+	width: 30%;
+	margin-right: 1.5%;
+	margin-left: 1.5%;
+}
+
+.selectText{
+	text-align: center;
+	justify-self: center;
+	padding: 1%;
+	font-weight: bold;
+	border-radius: 2%;
+	border: 5px solid lightgray;
+	background-color: lightcyan;
+	width: 20%;
+	margin: auto;
+	margin-top: 1%;
+}
+

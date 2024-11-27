@@ -1,0 +1,246 @@
+/* Container holding sidebar and main content */
+
+.App {
+  
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.container {
+	display: flex;
+	flex: 1;
+	width: 100%;
+  }
+  
+  
+  .board-container {
+	display: grid;
+	grid-template-columns: 100px 1fr; /* First column for row labels, second for the board */
+	gap: 20px;
+	position: relative;
+  }
+  
+  .column-labels {
+	display: flex;
+	justify-content: space-around;
+	grid-column: 2;
+	grid-row: 1;
+  }
+  
+  .column-label {
+	font-weight: bold;
+	text-align: center;
+	width: 100px; /* Adjust based on cell size */
+  }
+  
+  .row-labels {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	grid-column: 1;
+	grid-row: 2;
+  }
+  
+  .row-label {
+	display: flex;
+	align-items: center; /* Centers the label vertically */
+	justify-content: center; /* Centers the label horizontally if needed */
+	font-weight: bold;
+	text-align: center;
+	height: 200px; /* Match the height of each board row */
+  }
+  
+  .board {
+	display: grid;
+	grid-template-columns: repeat(3, auto); /* Adjust for more columns */
+	grid-template-rows: repeat(3, auto); /* Adjust for more rows */
+	grid-column: 2;
+	grid-row: 2;
+	gap: 10px;
+  }
+  
+  .cell {
+	width: 200px; /* Set larger cell width */
+	height: 200px; /* Set larger cell height */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #ddd;
+	background-color: #f9f9f9;
+	font-size: 18px; /* Adjust font size if needed */
+	cursor: pointer;
+	gap: 10px;
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+	width: 350px; /* Fixed width for the sidebar */
+	background-color: #f0f0f0;
+	color: #333;
+	padding: 20px;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+	display: flex;
+	flex-direction: column;
+	gap: 10px; /* Space between sidebar items */
+	overflow-y: auto; /* Adds a vertical scrollbar if content overflows */
+  }
+  
+  /* Sidebar heading styling */
+  .sidebar h2 {
+	font-size: 24px;
+	color: #444;
+	margin-top: 0;
+  }
+  
+  /* Right Sidebar */
+  .sidebar.right {
+	width: 250px;
+	background-color: #44e9e9ce; /* Light red background */
+	color: #333; /* Dark text for contrast */
+	padding: 20px;
+	box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow on the left edge */
+	overflow-y: auto; /* Adds a scrollbar if content overflows */
+  }
+  /* Right Sidebar Header */
+  .sidebar.right h2 {
+	color: #000000; /* Darker red for the header text */
+	font-size: 20px;
+	margin-bottom: 15px;
+  }
+  /* Pokémon Item Styling */
+  .pokemon-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 15px;
+  }
+  
+  .pokemon-item img {
+	width: 50px;
+	height: 50px;
+	object-fit: contain;
+  }
+  
+  .pokemon-item strong {
+	font-size: 16px;
+	margin-bottom: 5px;
+  }
+  
+  .pokemon-item p {
+	margin: 0;
+	font-size: 14px;
+	color: #555;
+  }
+  /* Main content styling */
+  .main-content {
+	position: relative; /* Make main-content a positioning context */
+	padding: 20px;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	background-color: #fafafa;
+	text-align: center;
+	margin-top: 20px;
+  }
+  
+  /* Styling for the difficulty buttons */
+  .difficulty-buttons {
+	display: flex;
+	gap: 10px; /* Space between buttons */
+	justify-content: center;
+  }
+  
+  .difficulty-buttons button {
+	padding: 16px 32px;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+  }
+  .difficulty-buttons button:first-child{
+	background-color: #388e3c;
+  }
+  
+  .difficulty-buttons button:hover{
+	background-color: #45a049; /* Darker green on hover */
+  }
+  
+  .difficulty-buttons button:active {
+	background-color: #388e3c; /* Even darker green on click */
+  }
+  
+  .difficulty-buttons button:nth-child(2){
+	background-color: #0066ff;
+  }
+  .difficulty-buttons button:nth-child(2):hover{
+	background-color: #0047b1;
+  
+  }
+  .timer {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: #3b90ff; /* Light yellow background */
+	padding: 12px 24px;
+	border-radius: 5px;
+	color: #333;
+  }
+  
+  .game-controls {
+	margin-bottom: 100px; /* Space between button and grid */
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	position: relative;
+	top: 10px /* Move it closer to the top */
+  }
+  
+  .start-game-button {
+	padding: 10px 20px;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: #4caf50; /* Green background */
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+  }
+  
+  .start-game-button:hover {
+	background-color: #388e3c;
+  }
+  
+  .start-game-button:active {
+	background-color: #2e7d32;
+  }
+  
+  /* New Game Button Styling */
+  .new-game-button {
+	padding: 12px 24px;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: #f44336; /* Red background for new game */
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+  }
+  
+  .new-game-button:hover {
+	background-color: #d32f2f; /* Darker red on hover */
+  }
+  
+  .new-game-button:active {
+	background-color: #b71c1c; /* Even darker red on click */
+  }
