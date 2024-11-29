@@ -2,6 +2,7 @@ import React, { useState, Component } from 'react';
 import Board from '../Board';
 import Timer from '../Timer';
 import './Body.css';
+import RightSidebar from './RightSidebar';
 
 const initialBoard = [
 	[null, null, null],
@@ -126,15 +127,7 @@ const Body = () => {
         <aside className="sidebar right">
           	<h2>Pokémon Database</h2>
             <ul>
-              	{pokemonDatabase.map((pokemon, index) => (
-                	<li key={index} className="pokemon-item">
-						<img src={pokemon.image} alt={pokemon.name} />
-						<div>
-							<strong>{pokemon.name}</strong>
-							<p>{pokemon.type}</p>
-						</div>
-                	</li>
-            	))}
+              	<RightSidebar />
           	</ul>
         </aside>
       </div>

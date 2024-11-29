@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select'
+import {GET} from'../api/route'
 
 import './Admin.css';
 
@@ -21,7 +22,17 @@ const userDummyData = [
 
 const Admin = () => {
 
+	const [pokemonData, setPokemonData] = useState([]);
 
+	useEffect(() => {
+		const data = async () => {
+			GET().then(result => setPokemonData(result));
+		};
+
+		data();
+
+	}, [GET, setPokemonData]);
+	
 	return (
 		<>
 		<div className='adminContent'>
@@ -63,6 +74,7 @@ const Admin = () => {
 				<h2 className='customPuzzleHeader'>Edit Users</h2>
 				<div className='selectProp'><Select options={propDummyData} /></div>
 			</div>
+			
 		</div>
 			
 		</>

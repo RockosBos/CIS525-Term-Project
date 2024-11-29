@@ -1,4 +1,5 @@
 // import the Request and Response classes
+'use server'
 
 import { NextResponse, NextRequest } from 'next/server'
 import mysql from  'mysql2/promise';
@@ -21,7 +22,10 @@ export async function GET(Request) {
 
 		connection.end();
 
-		return NextResponse.json({fields: fields.map((f) => f.name), results});
+		//return NextResponse.json({fields: fields.map((f) => f.name), results});
+		const response = NextResponse.json({fields: fields.map((f) => f.name), results});
+
+		return JSON.parse(JSON.stringify(results));
 	}
 	catch(err){
 		console.log("error: ", err.message);
