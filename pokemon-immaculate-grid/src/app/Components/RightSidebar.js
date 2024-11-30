@@ -23,13 +23,6 @@ const RightSidebar = () => {
 						return(<Card number={res.number} name={res.Pokemon} Image={res.Image} />)
 					})
 					
-					// pokemonData.map((pokemon) => {
-					// 	<>
-					// 		<Card number={pokemon.number} name={pokemon.Pokemon} Image={pokemon.Image} />
-					// 		<p>Hello</p>
-							
-					// 	</>
-					// })
 
 				}
 			</div>
