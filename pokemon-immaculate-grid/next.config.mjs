@@ -13,7 +13,7 @@ const nextConfig = {
 		password: '',
 		database: 'pokemon_grid',
 	},
-	reactStrictMode: true,
+	reactStrictMode: false,
 };
 
 export default nextConfig;

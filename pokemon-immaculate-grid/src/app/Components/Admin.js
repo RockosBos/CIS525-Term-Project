@@ -65,6 +65,7 @@ const Admin = () => {
 				pokemonList.push({value: res.number, label: res.Pokemon});
 			})
 
+			
 		}
 
 		<div className='adminContent'>
@@ -86,20 +87,20 @@ const Admin = () => {
 				<div className='customPuzzleDataRow'>
 					<p className='selectText'>Row 1:</p>
 					<div className='selectProp'><Select options={pokemonList} /></div>
-					<div className='selectProp'><Select options={pokemonDummyData} /></div>
-					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+					<div className='selectProp'><Select options={pokemonList} /></div>
+					<div className='selectProp'><Select options={pokemonList} /></div>
 				</div>
 				<div className='customPuzzleDataRow'>
 					<p className='selectText'>Row 2:</p>
-					<div className='selectProp'><Select options={pokemonDummyData} /></div>
-					<div className='selectProp'><Select options={pokemonDummyData} /></div>
-					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+					<div className='selectProp'><Select options={pokemonList} /></div>
+					<div className='selectProp'><Select options={pokemonList} /></div>
+					<div className='selectProp'><Select options={pokemonList} /></div>
 				</div>
 				<div className='customPuzzleDataRow'>
 					<p className='selectText'>Row 3:</p>
-					<div className='selectProp'><Select options={pokemonDummyData} /></div>
-					<div className='selectProp'><Select options={pokemonDummyData} /></div>
-					<div className='selectProp'><Select options={pokemonDummyData} /></div>
+					<div className='selectProp'><Select options={pokemonList} /></div>
+					<div className='selectProp'><Select options={pokemonList} /></div>
+					<div className='selectProp'><Select options={pokemonList} /></div>
 				</div>
 			</div>
 			<div className='userEdit'>

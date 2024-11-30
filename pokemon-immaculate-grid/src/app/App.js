@@ -10,10 +10,11 @@ import './App.css';
 function App() {
 
 	const [adminPage, setAdminPage] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(false);
   
   return (
     <>
-		<Header adminSet={setAdminPage} admin={adminPage}/>
+		<Header adminSet={setAdminPage} admin={adminPage} loginSet={setLoggedIn} loggedIn={loggedIn}/>
 		{!adminPage && <Body />}
 		{adminPage && <Admin />}
 		
