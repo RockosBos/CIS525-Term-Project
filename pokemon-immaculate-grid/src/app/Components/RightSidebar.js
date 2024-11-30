@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {GET} from'../api/route';
+import {GET} from'../api/Pokemon/route';
 import Card from './Card'
 
 const RightSidebar = () => {

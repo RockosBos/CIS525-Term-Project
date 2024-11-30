@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select'
-import {GET} from'../api/route'
+import {GET} from'../api/Pokemon/route'
+import {LoginGET} from '../api/Login/route'
 
 import './Admin.css';
 
@@ -47,6 +48,8 @@ const Admin = () => {
 
 	const [pokemonData, setPokemonData] = useState([]);
 	const [pokemonList, setPokemonList] = useState([{}]);
+	const [userData, setUserData] = useState([]);
+	const [userList, setUserList] = useState([{}]);
 
 	useEffect(() => {
 		const data = async () => {
@@ -57,6 +60,14 @@ const Admin = () => {
 
 	}, [GET, setPokemonData]);
 
+	useEffect(() => {
+		const data = async () => {
+			LoginGET().then(res => setUserData(res));
+		}
+
+		data();
+	}, [LoginGET, setUserData]);
+
 	
 	return (
 		<>
@@ -64,8 +75,11 @@ const Admin = () => {
 			pokemonData.map((res) => {
 				pokemonList.push({value: res.number, label: res.Pokemon});
 			})
-
-			
+		}
+		{
+			userData.map((res) => {
+				userList.push({value: res.Username, label: res.Username})
+			})
 		}
 
 		<div className='adminContent'>
@@ -105,7 +119,7 @@ const Admin = () => {
 			</div>
 			<div className='userEdit'>
 				<h2 className='customPuzzleHeader'>Edit Users</h2>
-				<div className='selectProp'><Select options={userDummyData} /></div>
+				<div className='selectProp'><Select options={userList} /></div>
 			</div>
 			
 		</div>
