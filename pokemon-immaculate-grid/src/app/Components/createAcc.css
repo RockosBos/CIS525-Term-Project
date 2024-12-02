@@ -1,0 +1,111 @@
+/* Modal overlay with a smooth fade-in effect */
+.modal-overlay {
+    position: fixed; /* Fixed position to cover the viewport */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background: rgba(0, 0, 0, 0.8); /* Slightly darker transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensures it appears above all other content */
+    animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in animation */
+  }
+  
+  /* Modal content */
+  .modal {
+    background: white;
+    padding: 40px; /* Increased padding for spacious content */
+    border-radius: 12px; /* rounded corners */
+    width: 600px; /* Width for larger display */
+    height: auto; /* Adjust height dynamically based on content */
+    max-width: 90%; /* Ensure responsiveness */
+    max-height: 80vh; /* Prevent modal from exceeding viewport height */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow for depth */
+    position: relative;
+    z-index: 1010; /* Keeps modal content above overlay */
+    overflow: auto; /* Enables scrolling for overflowing content */
+    animation: slideIn 0.3s ease-in-out; /* Smooth slide-in animation */
+  }
+  
+  /* Close button */
+  .modal-close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .modal-close-button:hover {
+    color: #f44336; /* Red color on hover */
+  }
+  
+  /* Form styling inside modal */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+  }
+
+  
+  /* Submit button */
+  .submit-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Animations for modal */
+  @keyframes fadeIn {
+    from {
+      background: rgba(0, 0, 0, 0);
+    }
+    to {
+      background: rgba(0, 0, 0, 0.8);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
