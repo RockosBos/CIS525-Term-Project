@@ -14,7 +14,7 @@ export async function GET(Request) {
 
 		let get_exp_query = '';
 
-		get_exp_query = 'SELECT * FROM pokemon_list';
+		get_exp_query = 'SELECT * FROM pokemon_list ORDER BY number';
 
 		let values = [];
 
