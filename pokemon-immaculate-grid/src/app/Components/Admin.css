@@ -5,15 +5,19 @@
 	padding-bottom: 1%;
 }
 
-h1{
+.AdminHeader{
 	height: fit-content;
 	margin: auto;
 	text-align: center;
+	margin-bottom: 2%;
 }
 
-h2{
+.customPuzzleHeader{
 	margin: auto;
 	text-align: center;
+	border-radius: 20px;
+	background-color: lightcyan;
+	width: 20%;
 }
 
 .customPuzzleData{
@@ -42,8 +46,7 @@ h2{
 	justify-self: center;
 	padding: 1%;
 	font-weight: bold;
-	border-radius: 2%;
-	border: 5px solid lightgray;
+	border-radius: 20px;
 	background-color: lightcyan;
 	width: 20%;
 	margin: auto;
@@ -83,4 +86,30 @@ h2{
 	font-size: 16px;
 	border-radius: 20px;
 	border: 2px solid grey;
+}
+
+.selectUser{
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	width: 30%;
+}
+
+.selectAdminFlag{
+	display: flex;
+	justify-content: left;
+	margin: auto;
+	
+}
+
+.userOptions{
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+	gap: 5px;
+	margin-top: 2%;
+}
+
+.selectUserBox{
+	width: 100%;
 }

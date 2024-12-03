@@ -3,6 +3,8 @@ import Board from '../Board';
 import Timer from '../Timer';
 import './Body.css';
 import RightSidebar from './RightSidebar';
+import LoginModal from './Modals/LoginModal';
+import SignupModal from './Modals/SignupModal';
 
 const initialBoard = [
 	[null, null, null],
@@ -26,7 +28,7 @@ const initialBoard = [
 	{ name: "Squirtle", type: "Water", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" },
   ];
 
-const Body = () => {
+const Body = (props) => {
 	const [board, setBoard] = useState(initialBoard);
  	const [gameStarted, setGameStarted] = useState(false); // Tracks if the game has started
   	// Define column and row labels
@@ -71,68 +73,71 @@ const Body = () => {
 	}
 
 	return (
-	<div>
-		<div className="container">
-        <aside className="sidebar">
-			<div className="difficulty-buttons">
+		<>
+			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin}/>
+			<SignupModal isOpen={props.displaySignup} setDisplaySignup={props.setDisplaySignup}/>
+			<div>
+				<div className="container">
+					<aside className="sidebar">
+						<div className="difficulty-buttons">
 
-				<button onClick={() => handleDifficultyChange("Easy")}>Easy</button>
-				<button onClick={() => handleDifficultyChange("Hard")}>Hard</button>
+							<button onClick={() => handleDifficultyChange("Easy")}>Easy</button>
+							<button onClick={() => handleDifficultyChange("Hard")}>Hard</button>
+						</div>
+					<h2>Rules</h2>
+					<ol>
+						<li>Select the difficulty level.</li>
+						<li>Review the criteria above and to the left of each cell.</li>
+						<li>Select the Pokémon that matches both criteria.</li>
+					</ol>
+					<h2>High Score</h2>
+					</aside>
+					<main className="main-content">
+						{gameStarted && (
+							<div className="game-controls">
+								<button className="new-game-button" onClick={resetBoard}>
+									New Game
+								</button>
+							</div>
+						)}
+						{!gameStarted && (
+							<div className="game-controls">
+								<button className="start-game-button" onClick={startGame}>
+									Start Game
+								</button>
+							</div>
+						)}
+
+						{gameStarted && <Timer />} {/* Show timer only when game starts */}
+						{gameStarted ? (
+							<div className="board-container">
+								<div className="column-labels">
+									{columnLabels.map((label, index) => (
+										<div key={index} className="column-label">{label}</div>
+									))}
+								</div>
+								<div className="row-labels">
+									{rowLabels.map((label, index) => (
+										<div key={index} className="row-label">{label}</div>
+									))}
+								</div>
+								<Board board={board} updateCell={updateCell} pokemonImages={POKEMON_IMAGES} />
+
+							</div>
+						) : (
+							<p>Click "Start Game" to begin!</p>
+						)}          
+
+					</main>
+					<aside className="sidebar right">
+						<h2>Pokémon Database</h2>
+						<ul>
+							<RightSidebar />
+						</ul>
+					</aside>
+				</div>
 			</div>
-          <h2>Rules</h2>
-          <ol>
-            <li>Select the difficulty level.</li>
-            <li>Review the criteria above and to the left of each cell.</li>
-            <li>Select the Pokémon that matches both criteria.</li>
-          </ol>
-          <h2>High Score</h2>
-        </aside>
-        <main className="main-content">
-  			{gameStarted && (
-				<div className="game-controls">
-					<button className="new-game-button" onClick={resetBoard}>
-						New Game
-					</button>
-				</div>
-  			)}
-    		{!gameStarted && (
-				<div className="game-controls">
-					<button className="start-game-button" onClick={startGame}>
-						Start Game
-					</button>
-				</div>
-  			)}
-
-  			{gameStarted && <Timer />} {/* Show timer only when game starts */}
-  			{gameStarted ? (
-				<div className="board-container">
-					<div className="column-labels">
-						{columnLabels.map((label, index) => (
-							<div key={index} className="column-label">{label}</div>
-						))}
-					</div>
-					<div className="row-labels">
-						{rowLabels.map((label, index) => (
-							<div key={index} className="row-label">{label}</div>
-						))}
-					</div>
-					<Board board={board} updateCell={updateCell} pokemonImages={POKEMON_IMAGES} />
-
-				</div>
-    		) : (
-        		<p>Click "Start Game" to begin!</p>
-    		)}          
-
-    	</main>
-        <aside className="sidebar right">
-          	<h2>Pokémon Database</h2>
-            <ul>
-              	<RightSidebar />
-          	</ul>
-        </aside>
-      </div>
-	</div>
-	
+		</>
 	)
 }
 	

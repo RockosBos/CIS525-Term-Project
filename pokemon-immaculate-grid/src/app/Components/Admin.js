@@ -40,6 +40,11 @@ const pokemonDummyData = [
 	{value: 'Bulbasaur', label: 'Bulbasaur'}
 ];
 
+const adminFlag = [
+	{value: 1, label: 'Yes'},
+	{value: 0, label: 'no'}
+]
+
 let gridProps = {
 	prop1: '', 
 	prop2: '', 
@@ -134,7 +139,16 @@ const Admin = (props) => {
 			</div>
 			<div className='userEdit'>
 				<h2 className='customPuzzleHeader'>Edit Users</h2>
-				<div className='selectProp'><Select options={userList} /></div>
+					<div className='userOptions'>
+						<p>Username:</p>
+						<div className='selectUser'><Select className="selectUserBox" options={userList} /></div>
+						<p>Is Admin:</p>
+						<div className='selectAdminFlag'><Select className="selectUserFlag" options={adminFlag} /></div>
+					</div>
+				<div className='propButtons'>
+					<button className='propSaveButton'>Save</button>
+					<button className='propResetButton'>Reset</button>
+				</div>
 			</div>
 			
 		</div>
