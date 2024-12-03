@@ -46,7 +46,9 @@ export async function LoginUser(req) {
 
 		let get_exp_query = '';
 
-		get_exp_query = `SELECT Username, Admin FROM login WHERE Username = ${req.username} AND Password = ${req.password}`;
+		//get_exp_query = 'SELECT * FROM login';
+		
+		get_exp_query = `SELECT Username, Admin FROM login WHERE Username = '${req.username}' AND Password = '${req.password}'`;
 
 		let values = [];
 
@@ -55,9 +57,10 @@ export async function LoginUser(req) {
 		connection.end();
 
 		//return NextResponse.json({fields: fields.map((f) => f.name), results});
-		const response = NextResponse.json({fields: fields.map((f) => f.name), results});
+		// const response = NextResponse.json({fields: fields.map((f) => f.name), results});
+		// console.log(results);
 
-		return JSON.parse(JSON.stringify(response));
+		return JSON.parse(JSON.stringify(results));
 	}
 	catch(err){
 		console.log("error: ", err.message);

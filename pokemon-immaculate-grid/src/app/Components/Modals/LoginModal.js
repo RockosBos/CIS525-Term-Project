@@ -10,20 +10,32 @@ const LoginModal = (props) => {
 	const [password, setPassword] = useState('');
 
 	useEffect(() => {
-		const data = async () => {
+		const getData = async () => {
 			LoginUser({username: username, password: password}).then((res) => {
-				
+				if(res.length){
+					props.setUser(res[0].Username);
+					if(res[0].Admin){
+						props.setIsAdmin(1);
+					}
+					else{
+						props.setIsAdmin(0);
+					}
+				}
+				else{
+
+				}
 			});
 		};
-		data();
-	})
+
+		getData();
+	}, [password]);
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
 
 		const target = e.target;
-		setUsername(target.username);
-		setPassword(target.password);
+		setUsername(target.username.value);
+		setPassword(target.password.value);
 
 		props.setDisplayLogin(false);
 

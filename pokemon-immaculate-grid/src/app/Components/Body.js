@@ -74,7 +74,7 @@ const Body = (props) => {
 
 	return (
 		<>
-			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin}/>
+			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin} setIsAdmin={props.setIsAdmin} setUser={props.setUser}/>
 			<SignupModal isOpen={props.displaySignup} setDisplaySignup={props.setDisplaySignup}/>
 			<div>
 				<div className="container">
