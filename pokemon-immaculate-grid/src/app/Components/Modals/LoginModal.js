@@ -1,12 +1,32 @@
 import React, { useEffect, useState } from 'react';
 
+import { LoginUser } from '../../api/Login/route';
+
 import './LoginModal.css';
 
 const LoginModal = (props) => {
 
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+
+	useEffect(() => {
+		const data = async () => {
+			LoginUser({username: username, password: password}).then((res) => {
+				
+			});
+		};
+		data();
+	})
+
 	const onSubmit = async (e) => {
 		e.preventDefault();
+
+		const target = e.target;
+		setUsername(target.username);
+		setPassword(target.password);
+
 		props.setDisplayLogin(false);
+
 	}
 
 	const cancel = async (e) => {
