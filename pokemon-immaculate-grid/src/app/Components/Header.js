@@ -30,7 +30,6 @@ const Header = (props) => {
 				{!props.loggedIn && !props.admin && <button className="signup-button" onClick={displaySignup}>Create Account</button>}
 				{!props.admin && props.isAdmin && <button className="admin-button" onClick={toggleAdmin}>Admin</button>}
 				{props.admin && props.isAdmin &&<button className="admin-button" onClick={toggleAdmin}>Return to Grid</button>}
-				
 			</div>
       	</header>
 	)

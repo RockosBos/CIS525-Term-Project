@@ -14,6 +14,7 @@ const LoginModal = (props) => {
 			LoginUser({username: username, password: password}).then((res) => {
 				if(res.length){
 					props.setUser(res[0].Username);
+					props.setLoggedIn(true);
 					if(res[0].Admin){
 						props.setIsAdmin(1);
 					}

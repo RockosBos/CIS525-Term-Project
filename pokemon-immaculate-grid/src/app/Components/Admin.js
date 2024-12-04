@@ -68,7 +68,7 @@ const Admin = (props) => {
 
 		data();
 
-	}, [GET, setPokemonData]);
+	}, []);
 
 	useEffect(() => {
 		const data = async () => {

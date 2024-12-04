@@ -23,7 +23,6 @@ export async function GET(Request) {
 		connection.end();
 
 		//return NextResponse.json({fields: fields.map((f) => f.name), results});
-		const response = NextResponse.json({fields: fields.map((f) => f.name), results});
 
 		return JSON.parse(JSON.stringify(results));
 	}

@@ -20,7 +20,7 @@ function App() {
   return (
     <>
 		<Header adminSet={setAdminPage} admin={adminPage} loginSet={setLoggedIn} loggedIn={loggedIn}  setDisplayLogin={setDisplayLogin} setDisplaySignup={setDisplaySignup} user={user} isAdmin={isAdmin}/>
-		{!adminPage && <Body displayLogin={displayLogin} setDisplayLogin={setDisplayLogin} displaySignup={displaySignup} setDisplaySignup={setDisplaySignup} setIsAdmin={setIsAdmin} setUser={setUser}/>}
+		{!adminPage && <Body setLoggedIn={setLoggedIn} displayLogin={displayLogin} setDisplayLogin={setDisplayLogin} displaySignup={displaySignup} setDisplaySignup={setDisplaySignup} setIsAdmin={setIsAdmin} setUser={setUser}/>}
 		{adminPage && <Admin setGridProps={setGridProps} gridProps={gridProps}/>}
 		<p>{gridProps.prop1}</p>
     </>
