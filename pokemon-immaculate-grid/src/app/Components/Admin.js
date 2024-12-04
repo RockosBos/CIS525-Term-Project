@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select'
-import {GET} from'../api/route'
+import {GET} from'../api/Pokemon/route'
+import {LoginGET} from '../api/Login/route'
 
 import './Admin.css';
 
@@ -39,14 +40,26 @@ const pokemonDummyData = [
 	{value: 'Bulbasaur', label: 'Bulbasaur'}
 ];
 
-const userDummyData = [
-	{}
-];
+const adminFlag = [
+	{value: 1, label: 'Yes'},
+	{value: 0, label: 'no'}
+]
 
-const Admin = () => {
+let gridProps = {
+	prop1: '', 
+	prop2: '', 
+	prop3: '', 
+	prop4: '', 
+	prop5: '', 
+	prop6: ''
+}
+
+const Admin = (props) => {
 
 	const [pokemonData, setPokemonData] = useState([]);
 	const [pokemonList, setPokemonList] = useState([{}]);
+	const [userData, setUserData] = useState([]);
+	const [userList, setUserList] = useState([{}]);
 
 	useEffect(() => {
 		const data = async () => {
@@ -55,7 +68,21 @@ const Admin = () => {
 
 		data();
 
-	}, [GET, setPokemonData]);
+	}, []);
+
+	useEffect(() => {
+		const data = async () => {
+			LoginGET().then(res => setUserData(res));
+		}
+
+		data();
+	}, [LoginGET, setUserData]);
+
+	const saveProps = (e) => {
+		e.preventDefault();
+		props.setGridProps(gridProps);
+		this.setState();
+	}
 
 	
 	return (
@@ -64,8 +91,11 @@ const Admin = () => {
 			pokemonData.map((res) => {
 				pokemonList.push({value: res.number, label: res.Pokemon});
 			})
-
-			
+		}
+		{
+			userData.map((res) => {
+				userList.push({value: res.Username, label: res.Username})
+			})
 		}
 
 		<div className='adminContent'>
@@ -74,17 +104,17 @@ const Admin = () => {
 			<div className='customPuzzleData'>
 				<div className='customPuzzleDataRow'>
 					<p className='selectText'>Horizontal Props:</p>
-					<div className='selectProp'><Select options={propData} /></div>
-					<div className='selectProp'><Select options={propData} /></div>
-					<div className='selectProp'><Select options={propData} /></div>
+					<div className='selectProp'><Select classname='prop1' options={propData} onChange={(choice) => {gridProps.prop1 = choice.value}}/></div>
+					<div className='selectProp'><Select classname='prop2' options={propData} onChange={(choice) => {gridProps.prop2 = choice.value}}/></div>
+					<div className='selectProp'><Select classname='prop3' options={propData} onChange={(choice) => {gridProps.prop3 = choice.value}}/></div>
 				</div>
 				<div className='customPuzzleDataRow'>
 					<p className='selectText'>Vertical Props:</p>
-					<div className='selectProp'><Select options={propData} /></div>
-					<div className='selectProp'><Select options={propData} /></div>
-					<div className='selectProp'><Select options={propData} /></div>
+					<div className='selectProp'><Select classname='prop4' options={propData} onChange={(choice) => {gridProps.prop4 = choice.value}}/></div>
+					<div className='selectProp'><Select classname='prop5' options={propData} onChange={(choice) => {gridProps.prop5 = choice.value}}/></div>
+					<div className='selectProp'><Select classname='prop6' options={propData} onChange={(choice) => {gridProps.prop6 = choice.value}}/></div>
 				</div>
-				<div className='customPuzzleDataRow'>
+				{/* <div className='customPuzzleDataRow'>
 					<p className='selectText'>Row 1:</p>
 					<div className='selectProp'><Select options={pokemonList} /></div>
 					<div className='selectProp'><Select options={pokemonList} /></div>
@@ -101,11 +131,24 @@ const Admin = () => {
 					<div className='selectProp'><Select options={pokemonList} /></div>
 					<div className='selectProp'><Select options={pokemonList} /></div>
 					<div className='selectProp'><Select options={pokemonList} /></div>
+				</div> */}
+				<div className='propButtons'>
+					<button className='propSaveButton' onClick={saveProps}>Save</button>
+					<button className='propResetButton'>Reset</button>
 				</div>
 			</div>
 			<div className='userEdit'>
 				<h2 className='customPuzzleHeader'>Edit Users</h2>
-				<div className='selectProp'><Select options={userDummyData} /></div>
+					<div className='userOptions'>
+						<p>Username:</p>
+						<div className='selectUser'><Select className="selectUserBox" options={userList} /></div>
+						<p>Is Admin:</p>
+						<div className='selectAdminFlag'><Select className="selectUserFlag" options={adminFlag} /></div>
+					</div>
+				<div className='propButtons'>
+					<button className='propSaveButton'>Save</button>
+					<button className='propResetButton'>Reset</button>
+				</div>
 			</div>
 			
 		</div>

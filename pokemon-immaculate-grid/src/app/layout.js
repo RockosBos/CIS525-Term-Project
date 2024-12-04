@@ -14,7 +14,7 @@ const geistMono = localFont({
 
 export const metadata = {
   title: "Pokemon Immaculate Grid",
-  description: "Term Project for CIS 525 Fall 2024 Unniversity of Michigan - Dearborn",
+  description: "Term Project for CIS 525 Fall 2024 University of Michigan - Dearborn",
 };
 
 export default function RootLayout({ children }) {
