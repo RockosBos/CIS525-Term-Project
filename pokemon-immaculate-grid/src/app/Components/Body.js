@@ -35,6 +35,9 @@ const Body = (props) => {
 	const [board, setBoard] = useState(initialBoard);
  	const [gameStarted, setGameStarted] = useState(false); // Tracks if the game has started
 	const [pokemonData, setPokemonData] = useState([]);
+	const [pokemonList, setPokemonList] = useState([]);
+	const [selectedCellData, setSelectedCellData] = useState({rowNum: null, colNum: null, selectedPokemonNumber: null, selectedPokemonName: null});
+	
 
 	const [showChoosePokemonModal, setShowChoosePokemonModal] = useState(false);
 
@@ -42,11 +45,15 @@ const Body = (props) => {
 	useEffect(() => {
 		const data = async () => {
 			GET().then(result => setPokemonData(result));
+			pokemonData.map((res) => {
+				pokemonList.push({value: `${res.Pokemon}`, label: `${res.Pokemon}`});
+				setPokemonData(pokemonList);
+			});
 		};
 	
 		data();
 	
-	}, []);
+	}, [gameStarted]);
 
   	// Define column and row labels
   	const columnLabels = [props.gridProps.prop1, props.gridProps.prop2, props.gridProps.prop3]; // Example labels
@@ -93,7 +100,7 @@ const Body = (props) => {
 		<>
 			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin} setIsAdmin={props.setIsAdmin} setUser={props.setUser} setLoggedIn={props.setLoggedIn}/>
 			<SignupModal isOpen={props.displaySignup} setDisplaySignup={props.setDisplaySignup}/>
-			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonList={pokemonData}/>
+			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} pokemonList={pokemonList}/>
 			<div>
 				<div className="container">
 					<aside className="sidebar">
@@ -139,7 +146,7 @@ const Body = (props) => {
 										<div key={index} className="row-label">{label}</div>
 									))}
 								</div>
-								<Board board={board} updateCell={updateCell} gridProps={props.gridProps} />
+								<Board board={board} updateCell={updateCell} gridProps={props.gridProps} setShowChoosePokemonModal={setShowChoosePokemonModal} setSelectedCellData={setSelectedCellData}/>
 
 							</div>
 						) : (

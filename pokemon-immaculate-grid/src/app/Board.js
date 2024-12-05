@@ -3,17 +3,17 @@
 import React from 'react';
 import Cell from './Cell';
 
-function Board({ board, updateCell, pokemonImages }) {
+function Board( props ) {
   return (
     <div className="board">
-      {board.map((row, rowIndex) =>
+      {props.board.map((row, rowIndex) =>
         row.map((value, colIndex) => (
           <div 
             key={`${rowIndex}-${colIndex}`} 
             className="cell" 
-            onClick={() => updateCell(rowIndex, colIndex, value)}
+            onClick={() => props.updateCell(rowIndex, colIndex, value)}
           >
-            <Cell cellNum={{rowIndex, colIndex}}/>
+            <Cell cellNum={{rowIndex, colIndex}} setShowChoosePokemonModal={props.setShowChoosePokemonModal} setSelectedCellData={props.setSelectedCellData}/>
           </div>
         ))
       )}

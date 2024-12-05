@@ -16,8 +16,6 @@ function App() {
 	const [gridProps, setGridProps] = useState({prop1: '', prop2: '', prop3: '', prop4: '', prop5: '', prop6: ''});
 	const [user, setUser] = useState("Guest");
 	const [isAdmin, setIsAdmin] = useState(false);
-
-	const [pokemonData, setPokemonData] = useState([]);
   
   return (
     <>
