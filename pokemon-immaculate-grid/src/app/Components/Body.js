@@ -36,7 +36,7 @@ const Body = (props) => {
  	const [gameStarted, setGameStarted] = useState(false); // Tracks if the game has started
 	const [pokemonData, setPokemonData] = useState([]);
 	const [pokemonList, setPokemonList] = useState([]);
-	const [selectedCellData, setSelectedCellData] = useState({rowNum: null, colNum: null, selectedPokemonNumber: null, selectedPokemonName: null});
+	const [selectedCellData, setSelectedCellData] = useState({rowNum: null, colNum: null, rowProp: null, colProp: null, selectedPokemonNumber: null, selectedPokemonName: null});
 	
 
 	const [showChoosePokemonModal, setShowChoosePokemonModal] = useState(false);
@@ -100,7 +100,7 @@ const Body = (props) => {
 		<>
 			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin} setIsAdmin={props.setIsAdmin} setUser={props.setUser} setLoggedIn={props.setLoggedIn}/>
 			<SignupModal isOpen={props.displaySignup} setDisplaySignup={props.setDisplaySignup}/>
-			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} pokemonList={pokemonList}/>
+			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} pokemonList={pokemonList} columnLabels={columnLabels} rowLabels={rowLabels}/>
 			<div>
 				<div className="container">
 					<aside className="sidebar">
@@ -146,7 +146,7 @@ const Body = (props) => {
 										<div key={index} className="row-label">{label}</div>
 									))}
 								</div>
-								<Board board={board} updateCell={updateCell} gridProps={props.gridProps} setShowChoosePokemonModal={setShowChoosePokemonModal} setSelectedCellData={setSelectedCellData}/>
+								<Board board={board} updateCell={updateCell} gridProps={props.gridProps} setShowChoosePokemonModal={setShowChoosePokemonModal} setSelectedCellData={setSelectedCellData} columnLabels={columnLabels} rowLabels={rowLabels}/>
 
 							</div>
 						) : (

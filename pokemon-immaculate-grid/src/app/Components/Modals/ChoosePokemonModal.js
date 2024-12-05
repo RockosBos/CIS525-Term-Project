@@ -9,7 +9,7 @@ const ChoosePokemonModal = (props) => {
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
-		console.log(pokemonSelection);
+		console.log(`Row:`)
 
 	}
 
