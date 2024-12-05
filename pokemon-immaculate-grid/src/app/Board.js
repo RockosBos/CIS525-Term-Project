@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react';
+import Cell from './Cell';
 
 function Board({ board, updateCell, pokemonImages }) {
   return (
@@ -12,7 +13,7 @@ function Board({ board, updateCell, pokemonImages }) {
             className="cell" 
             onClick={() => updateCell(rowIndex, colIndex, value)}
           >
-            {value ? <img src={pokemonImages[value]} alt="pokemon" /> : ''}
+            <Cell cellNum={{rowIndex, colIndex}}/>
           </div>
         ))
       )}

@@ -81,7 +81,6 @@ const Admin = (props) => {
 	const saveProps = (e) => {
 		e.preventDefault();
 		props.setGridProps(gridProps);
-		this.setState();
 	}
 
 	

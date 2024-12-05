@@ -1,24 +1,30 @@
 "use client"
 
-import React from 'react';
+import React, { useState } from 'react';
+import ChoosePokemonModal from './Components/Modals/ChoosePokemonModal';
 
-function Cell({ row, col, value, updateCell, pokemonImages }) {
+const Cell = (props) =>  {
+
+	const [showModal, setShowModal] = useState(false);
+
+	// const imageString = `/pokemon/${props.number}_${props.pokemonName}.png`
+
+
   const handleClick = () => {
-    if (value === null) {
-      const newValue = parseInt(prompt('Enter a number (1-9):'), 10);
-      if (newValue >= 1 && newValue <= 9) {
-        updateCell(row, col, newValue);
-      }
-    }
+    if(showModal){
+		setShowModal(false);
+	}
+	else{
+		setShowModal(true);
+	}
+	console.log(showModal);
   };
 
   return (
     <div className="cell" onClick={handleClick}>
-      {value ? (
-        <img src={pokemonImages[value]} alt={`pokemon-${value}`} />
-      ) : (
-        <span className="empty-cell"> </span>
-      )}
+		<p>{props.cellNum.rowIndex} {props.cellNum.colIndex}</p>
+		{/* <h1>`${props.number} ${props.pokemonName}`</h1> */}
+		{/* <Image src={imageString} alt='Pokemon Image' width={100} height={100}/> */}
     </div>
   );
 }

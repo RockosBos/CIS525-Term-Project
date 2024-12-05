@@ -1,39 +1,56 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Board from '../Board';
 import Timer from '../Timer';
 import './Body.css';
 import RightSidebar from './RightSidebar';
 import LoginModal from './Modals/LoginModal';
 import SignupModal from './Modals/SignupModal';
+import ChoosePokemonModal from './Modals/ChoosePokemonModal';
+
+import {GET} from'../api/Pokemon/route';
 
 const initialBoard = [
 	[null, null, null],
 	[null, null, null],
 	[null, null, null]
   ];
-  const POKEMON_IMAGES = {
-	1: 'images/charizard.png',
-	2: 'images/lugia.png',
-	3: 'images/dragonite.png',
-	4: 'images/blastoise.png',
-	5: 'images/venusaur.png',
-	6: 'images/gengar.png',
-	7: 'images/mew.png',
-	8: 'images/mewtwo.png',
-	9: 'images/rhydon.png',
-  };
-  const pokemonDatabase = [
-	{ name: "Bulbasaur", type: "Grass/Poison", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" },
-	{ name: "Charmander", type: "Fire", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" },
-	{ name: "Squirtle", type: "Water", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" },
-  ];
+//   const POKEMON_IMAGES = {
+// 	1: 'images/charizard.png',
+// 	2: 'images/lugia.png',
+// 	3: 'images/dragonite.png',
+// 	4: 'images/blastoise.png',
+// 	5: 'images/venusaur.png',
+// 	6: 'images/gengar.png',
+// 	7: 'images/mew.png',
+// 	8: 'images/mewtwo.png',
+// 	9: 'images/rhydon.png',
+//   };
+//   const pokemonDatabase = [
+// 	{ name: "Bulbasaur", type: "Grass/Poison", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" },
+// 	{ name: "Charmander", type: "Fire", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" },
+// 	{ name: "Squirtle", type: "Water", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" },
+//   ];
 
 const Body = (props) => {
 	const [board, setBoard] = useState(initialBoard);
  	const [gameStarted, setGameStarted] = useState(false); // Tracks if the game has started
+	const [pokemonData, setPokemonData] = useState([]);
+
+	const [showChoosePokemonModal, setShowChoosePokemonModal] = useState(false);
+
+
+	useEffect(() => {
+		const data = async () => {
+			GET().then(result => setPokemonData(result));
+		};
+	
+		data();
+	
+	}, []);
+
   	// Define column and row labels
-  	const columnLabels = ['Type', 'Region', 'Power Level']; // Example labels
-  	const rowLabels = ['Water', 'Fire', 'Grass']; // Example labels
+  	const columnLabels = [props.gridProps.prop1, props.gridProps.prop2, props.gridProps.prop3]; // Example labels
+  	const rowLabels = [props.gridProps.prop4, props.gridProps.prop5, props.gridProps.prop6]; // Example labels
 
   	const updateCell = (row, col, value) => {
     	const newBoard = board.map((r, rowIndex) =>
@@ -76,6 +93,7 @@ const Body = (props) => {
 		<>
 			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin} setIsAdmin={props.setIsAdmin} setUser={props.setUser} setLoggedIn={props.setLoggedIn}/>
 			<SignupModal isOpen={props.displaySignup} setDisplaySignup={props.setDisplaySignup}/>
+			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonList={pokemonData}/>
 			<div>
 				<div className="container">
 					<aside className="sidebar">
@@ -121,7 +139,7 @@ const Body = (props) => {
 										<div key={index} className="row-label">{label}</div>
 									))}
 								</div>
-								<Board board={board} updateCell={updateCell} pokemonImages={POKEMON_IMAGES} />
+								<Board board={board} updateCell={updateCell} gridProps={props.gridProps} />
 
 							</div>
 						) : (
@@ -132,7 +150,7 @@ const Body = (props) => {
 					<aside className="sidebar right">
 						<h2>Pokémon Database</h2>
 						<ul>
-							<RightSidebar />
+							<RightSidebar pokemonData={pokemonData}/>
 						</ul>
 					</aside>
 				</div>
