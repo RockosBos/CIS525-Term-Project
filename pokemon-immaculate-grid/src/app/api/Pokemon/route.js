@@ -38,3 +38,37 @@ export async function GET(Request) {
 	}
 
 }
+
+export async function submitGuess(req){
+	try{
+		const connection = await mysql.createConnection(connectionParams);
+
+		let get_exp_query = '';
+
+		//get_exp_query = 'SELECT * FROM login';
+		
+		get_exp_query = `SELECT * FROM pokemon_list WHERE `;
+
+		let values = [];
+
+		const [results, fields] = await connection.execute(get_exp_query, values);
+
+		connection.end();
+
+		//return NextResponse.json({fields: fields.map((f) => f.name), results});
+		// const response = NextResponse.json({fields: fields.map((f) => f.name), results});
+		// console.log(results);
+
+		return JSON.parse(JSON.stringify(results));
+	}
+	catch(err){
+		console.log("error: ", err.message);
+
+		const response = {
+			error: err.message,
+			returnedStatus: 200
+		}
+
+		return NextResponse.json(response, {status: 200})
+	}
+}
