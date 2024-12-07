@@ -36,7 +36,7 @@ const Body = (props) => {
  	const [gameStarted, setGameStarted] = useState(false); // Tracks if the game has started
 	const [pokemonData, setPokemonData] = useState([]);
 	const [pokemonList, setPokemonList] = useState([]);
-	const [selectedCellData, setSelectedCellData] = useState({rowNum: null, colNum: null, rowProp: null, colProp: null, selectedPokemonNumber: null, selectedPokemonName: null});
+	const [selectedCellData, setSelectedCellData] = useState({rowNum: null, colNum: null, rowProp: null, colProp: null, selectedPokemonNumber: null, selectedPokemonName: null, cellState: "neutral"});
 	
 
 	const [showChoosePokemonModal, setShowChoosePokemonModal] = useState(false);
@@ -74,6 +74,7 @@ const Body = (props) => {
 
 	const startGame = () => {
 		setGameStarted(true); // Start the game
+		setSelectedCellData({rowNum: null, colNum: null, rowProp: null, colProp: null, selectedPokemonNumber: null, selectedPokemonName: null, cellState: "neutral"});
 		console.log("Game Started!"); // Placeholder for any additional logic
 	};
 

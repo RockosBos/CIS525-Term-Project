@@ -21,14 +21,29 @@ const ChoosePokemonModal = (props) => {
 		e.preventDefault();
 		submitGuess({rowProp: props.selectedCellData.rowProp, colProp: props.selectedCellData.colProp, selection: pokemonSelection}).then(
 			result => {
-				props.setSelectedCellData({
-					rowNum: props.selectedCellData.rowNum, 
-					colNum: props.selectedCellData.colNum, 
-					rowProp: props.selectedCellData.rowProp, 
-					colProp: props.selectedCellData.colProp, 
-					selectedPokemonNumber: result[0].number, 
-					selectedPokemonName: result[0].Pokemon
-				});
+				if(result[0]){
+					props.setSelectedCellData({
+						rowNum: props.selectedCellData.rowNum, 
+						colNum: props.selectedCellData.colNum, 
+						rowProp: props.selectedCellData.rowProp, 
+						colProp: props.selectedCellData.colProp, 
+						selectedPokemonNumber: result[0].number, 
+						selectedPokemonName: result[0].Pokemon,
+						cellState: "Correct"
+					});
+				}
+				else{
+					props.setSelectedCellData({
+						rowNum: props.selectedCellData.rowNum, 
+						colNum: props.selectedCellData.colNum, 
+						rowProp: props.selectedCellData.rowProp, 
+						colProp: props.selectedCellData.colProp, 
+						selectedPokemonNumber: null, 
+						selectedPokemonName: null,
+						cellState: "Incorrect"
+					});
+					alert("Incorrect Guess");
+				}
 			}
 
 		);
