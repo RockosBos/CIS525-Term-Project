@@ -56,8 +56,8 @@ const Body = (props) => {
 	}, [gameStarted]);
 
   	// Define column and row labels
-  	const columnLabels = [props.gridProps.prop1, props.gridProps.prop2, props.gridProps.prop3]; // Example labels
-  	const rowLabels = [props.gridProps.prop4, props.gridProps.prop5, props.gridProps.prop6]; // Example labels
+  	const columnLabels = [props.gridProps[0], props.gridProps[1], props.gridProps[2]]; // Example labels
+  	const rowLabels = [props.gridProps[3], props.gridProps[4], props.gridProps[5]]; // Example labels
 
   	const updateCell = (row, col, value) => {
     	const newBoard = board.map((r, rowIndex) =>
@@ -100,7 +100,7 @@ const Body = (props) => {
 		<>
 			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin} setIsAdmin={props.setIsAdmin} setUser={props.setUser} setLoggedIn={props.setLoggedIn}/>
 			<SignupModal isOpen={props.displaySignup} setDisplaySignup={props.setDisplaySignup}/>
-			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} pokemonList={pokemonList} columnLabels={columnLabels} rowLabels={rowLabels}/>
+			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} setSelectedCellData={setSelectedCellData} pokemonList={pokemonList} columnLabels={columnLabels} rowLabels={rowLabels}/>
 			<div>
 				<div className="container">
 					<aside className="sidebar">
@@ -146,7 +146,7 @@ const Body = (props) => {
 										<div key={index} className="row-label">{label}</div>
 									))}
 								</div>
-								<Board board={board} updateCell={updateCell} gridProps={props.gridProps} setShowChoosePokemonModal={setShowChoosePokemonModal} setSelectedCellData={setSelectedCellData} columnLabels={columnLabels} rowLabels={rowLabels}/>
+								<Board board={board} updateCell={updateCell} gridProps={props.gridProps} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} setSelectedCellData={setSelectedCellData} columnLabels={columnLabels} rowLabels={rowLabels}/>
 
 							</div>
 						) : (

@@ -5,6 +5,7 @@ import Cell from './Cell';
 
 function Board( props ) {
   return (
+	
     <div className="board">
       {props.board.map((row, rowIndex) =>
         row.map((value, colIndex) => (
@@ -13,7 +14,7 @@ function Board( props ) {
             className="cell" 
             onClick={() => props.updateCell(rowIndex, colIndex, value)}
           >
-            <Cell cellNum={{rowIndex, colIndex}} setShowChoosePokemonModal={props.setShowChoosePokemonModal} setSelectedCellData={props.setSelectedCellData}/>
+            <Cell cellNum={{rowIndex, colIndex}} setShowChoosePokemonModal={props.setShowChoosePokemonModal} setSelectedCellData={props.setSelectedCellData} selectedCellData={props.selectedCellData} gridProps={props.gridProps}/>
           </div>
         ))
       )}
