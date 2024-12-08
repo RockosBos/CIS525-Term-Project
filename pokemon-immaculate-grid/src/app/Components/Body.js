@@ -43,11 +43,14 @@ const Body = (props) => {
 	const [pokemonList, setPokemonList] = useState([]);
 	const [selectedCellData, setSelectedCellData] = useState({rowNum: null, colNum: null, rowProp: null, colProp: null, selectedPokemonNumber: null, selectedPokemonName: null, cellState: "neutral"});
 	const [score, setScore] = useState(0);
-	const [guesses, setGuesses] = useState(0);
+	const [guesses, setGuesses] = useState(9);
+	const [seconds, setSeconds] = useState(0);
 	
 
 	const [showChoosePokemonModal, setShowChoosePokemonModal] = useState(false);
 	const [showResultModal, setShowResultModal] = useState(false);
+	const [columnLabels, setColumnLabels] = useState([props.gridProps[0], props.gridProps[1], props.gridProps[2]]);
+	const [rowLabels, setRowLabels] = useState([props.gridProps[3], props.gridProps[4], props.gridProps[5]]);
 
 
 	useEffect(() => {
@@ -64,8 +67,8 @@ const Body = (props) => {
 	}, [gameStarted]);
 
   	// Define column and row labels
-  	const columnLabels = [props.gridProps[0], props.gridProps[1], props.gridProps[2]]; // Example labels
-  	const rowLabels = [props.gridProps[3], props.gridProps[4], props.gridProps[5]]; // Example labels
+  	//const columnLabels = [props.gridProps[0], props.gridProps[1], props.gridProps[2]]; // Example labels
+  	//const rowLabels = [props.gridProps[3], props.gridProps[4], props.gridProps[5]]; // Example labels
 
   	const updateCell = (row, col, value) => {
     	const newBoard = board.map((r, rowIndex) =>
@@ -79,6 +82,7 @@ const Body = (props) => {
     	setDifficulty(level); // Update difficulty level
 		if(level == 'Easy'){
 			setGuesses(4);
+			
 		}
 		else{
 			setGuesses(9);
@@ -95,9 +99,17 @@ const Body = (props) => {
 	const resetBoard = () => {
 		if(difficulty == "Hard"){
 			setBoard(initialHardBoard); // Reset board to initial state
+			setScore(0);
+			setGuesses(9);
+			setColumnLabels([props.gridProps[0], props.gridProps[1], props.gridProps[2]]);
+			setRowLabels([props.gridProps[3], props.gridProps[4], props.gridProps[5]]);
 		}
 		else{
 			setBoard(initialEasyBoard); // Reset board to initial state
+			setScore(0);
+			setGuesses(4);
+			setColumnLabels([props.gridProps[0], props.gridProps[1]]);
+			setRowLabels([props.gridProps[3], props.gridProps[4]]);
 		}
 		setGameStarted(false); // Stop the game
 	};
@@ -116,20 +128,26 @@ const Body = (props) => {
 		}
 	}
 
+	useEffect(() => {
+		if(guesses < 1){
+			setShowResultModal(true);
+		}
+	}, [guesses]);
+
 	return (
 		<>
 			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin} setIsAdmin={props.setIsAdmin} setUser={props.setUser} setLoggedIn={props.setLoggedIn}/>
 			<SignupModal isOpen={props.displaySignup} setDisplaySignup={props.setDisplaySignup}/>
 			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} setSelectedCellData={setSelectedCellData} pokemonList={pokemonList} columnLabels={columnLabels} rowLabels={rowLabels} score={score} setScore={setScore} guesses={guesses} setGuesses={setGuesses}/>
-			<ResultModal isOpen={showResultModal} setShowResultModal={setShowResultModal} score={score}/>
+			<ResultModal isOpen={showResultModal} setShowResultModal={setShowResultModal} score={score} seconds={seconds}/>
 			<div>
 				<div className="container">
 					<aside className="sidebar">
-						<div className="difficulty-buttons">
+						{!gameStarted && <div className="difficulty-buttons">
 
 							<button onClick={() => handleDifficultyChange("Easy")}>Easy</button>
 							<button onClick={() => handleDifficultyChange("Hard")}>Hard</button>
-						</div>
+						</div>}
 						<h2>Rules</h2>
 						<ol>
 							<li>Select the difficulty level.</li>
@@ -137,7 +155,7 @@ const Body = (props) => {
 							<li>Select the Pokémon that matches both criteria.</li>
 						</ol>
 						<div className='score'>
-							<h2>High Score</h2>
+							<h2>Score</h2>
 							<h2>{score}</h2>
 						</div>
 						<div className='guesses'>
@@ -161,7 +179,8 @@ const Body = (props) => {
 							</div>
 						)}
 
-						{gameStarted && <Timer />} {/* Show timer only when game starts */}
+						{gameStarted && <Timer seconds={seconds} setSeconds={setSeconds}/>} {/* Show timer only when game starts */}
+						{gameStarted && <h2>{`Difficulty ${difficulty}`}</h2>}
 						{gameStarted ? (
 							<div className="board-container">
 								<div className="column-labels">

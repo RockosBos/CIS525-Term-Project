@@ -70,6 +70,7 @@ const Admin = (props) => {
 	const saveProps = (e) => {
 		e.preventDefault();
 		props.setGridProps(gridProps);
+		alert("Grid Properties Updated");
 	}
 
 	const updateAdmin = (e) => {
