@@ -8,8 +8,13 @@ import SignupModal from './Modals/SignupModal';
 import ChoosePokemonModal from './Modals/ChoosePokemonModal';
 
 import {GET} from'../api/Pokemon/route';
+import ResultModal from './Modals/ResultModal';
 
-const initialBoard = [
+const initialEasyBoard = [
+	[null, null],
+	[null, null]
+]
+const initialHardBoard = [
 	[null, null, null],
 	[null, null, null],
 	[null, null, null]
@@ -32,7 +37,7 @@ const initialBoard = [
 //   ];
 
 const Body = (props) => {
-	const [board, setBoard] = useState(initialBoard);
+	const [board, setBoard] = useState(initialHardBoard);
  	const [gameStarted, setGameStarted] = useState(false); // Tracks if the game has started
 	const [pokemonData, setPokemonData] = useState([]);
 	const [pokemonList, setPokemonList] = useState([]);
@@ -42,6 +47,7 @@ const Body = (props) => {
 	
 
 	const [showChoosePokemonModal, setShowChoosePokemonModal] = useState(false);
+	const [showResultModal, setShowResultModal] = useState(false);
 
 
 	useEffect(() => {
@@ -71,23 +77,28 @@ const Body = (props) => {
 
   	const handleDifficultyChange = (level) => {
     	setDifficulty(level); // Update difficulty level
+		if(level == 'Easy'){
+			setGuesses(4);
+		}
+		else{
+			setGuesses(9);
+		}
     	console.log(`Difficulty set to: ${level}`); // Placeholder action
   	}
 
 	const startGame = () => {
 		setGameStarted(true); // Start the game
 		setSelectedCellData({rowNum: null, colNum: null, rowProp: null, colProp: null, selectedPokemonNumber: null, selectedPokemonName: null, cellState: "neutral"});
-		if(difficulty == 'Easy'){
-			setGuesses(4);
-		}
-		else{
-			setGuesses(9);
-		}
 		console.log("Game Started!"); // Placeholder for any additional logic
 	};
 
 	const resetBoard = () => {
-		setBoard(initialBoard); // Reset board to initial state
+		if(difficulty == "Hard"){
+			setBoard(initialHardBoard); // Reset board to initial state
+		}
+		else{
+			setBoard(initialEasyBoard); // Reset board to initial state
+		}
 		setGameStarted(false); // Stop the game
 	};
 
@@ -109,7 +120,8 @@ const Body = (props) => {
 		<>
 			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin} setIsAdmin={props.setIsAdmin} setUser={props.setUser} setLoggedIn={props.setLoggedIn}/>
 			<SignupModal isOpen={props.displaySignup} setDisplaySignup={props.setDisplaySignup}/>
-			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} setSelectedCellData={setSelectedCellData} pokemonList={pokemonList} columnLabels={columnLabels} rowLabels={rowLabels}/>
+			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} setSelectedCellData={setSelectedCellData} pokemonList={pokemonList} columnLabels={columnLabels} rowLabels={rowLabels} score={score} setScore={setScore} guesses={guesses} setGuesses={setGuesses}/>
+			<ResultModal isOpen={showResultModal} setShowResultModal={setShowResultModal} score={score}/>
 			<div>
 				<div className="container">
 					<aside className="sidebar">
