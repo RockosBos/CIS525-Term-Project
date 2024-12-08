@@ -45,14 +45,7 @@ const adminFlag = [
 	{value: 0, label: 'no'}
 ]
 
-let gridProps = {
-	prop1: '', 
-	prop2: '', 
-	prop3: '', 
-	prop4: '', 
-	prop5: '', 
-	prop6: ''
-}
+let gridProps = [];
 
 const Admin = (props) => {
 
@@ -81,7 +74,6 @@ const Admin = (props) => {
 	const saveProps = (e) => {
 		e.preventDefault();
 		props.setGridProps(gridProps);
-		this.setState();
 	}
 
 	
@@ -104,15 +96,15 @@ const Admin = (props) => {
 			<div className='customPuzzleData'>
 				<div className='customPuzzleDataRow'>
 					<p className='selectText'>Horizontal Props:</p>
-					<div className='selectProp'><Select classname='prop1' options={propData} onChange={(choice) => {gridProps.prop1 = choice.value}}/></div>
-					<div className='selectProp'><Select classname='prop2' options={propData} onChange={(choice) => {gridProps.prop2 = choice.value}}/></div>
-					<div className='selectProp'><Select classname='prop3' options={propData} onChange={(choice) => {gridProps.prop3 = choice.value}}/></div>
+					<div className='selectProp'><Select classname='prop1' options={propData} onChange={(choice) => {gridProps[0] = choice.value}}/></div>
+					<div className='selectProp'><Select classname='prop2' options={propData} onChange={(choice) => {gridProps[1] = choice.value}}/></div>
+					<div className='selectProp'><Select classname='prop3' options={propData} onChange={(choice) => {gridProps[2] = choice.value}}/></div>
 				</div>
 				<div className='customPuzzleDataRow'>
 					<p className='selectText'>Vertical Props:</p>
-					<div className='selectProp'><Select classname='prop4' options={propData} onChange={(choice) => {gridProps.prop4 = choice.value}}/></div>
-					<div className='selectProp'><Select classname='prop5' options={propData} onChange={(choice) => {gridProps.prop5 = choice.value}}/></div>
-					<div className='selectProp'><Select classname='prop6' options={propData} onChange={(choice) => {gridProps.prop6 = choice.value}}/></div>
+					<div className='selectProp'><Select classname='prop4' options={propData} onChange={(choice) => {gridProps[3] = choice.value}}/></div>
+					<div className='selectProp'><Select classname='prop5' options={propData} onChange={(choice) => {gridProps[4] = choice.value}}/></div>
+					<div className='selectProp'><Select classname='prop6' options={propData} onChange={(choice) => {gridProps[5] = choice.value}}/></div>
 				</div>
 				{/* <div className='customPuzzleDataRow'>
 					<p className='selectText'>Row 1:</p>
