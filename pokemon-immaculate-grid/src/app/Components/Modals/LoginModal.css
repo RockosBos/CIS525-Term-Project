@@ -1,27 +1,46 @@
 .overlay {
-	z-index: 9999;
-	width: 100vw;
-	height: 100vh;
-	position: absolute;
+	position: fixed; /* Fixed position to cover the viewport */
 	top: 0;
-	background: rgba(0, 0, 0, 0.5);
+	left: 0;
+	width: 100vw; /* Full viewport width */
+	height: 100vh; /* Full viewport height */
+	background: rgba(0, 0, 0, 0.8); /* Slightly darker transparent background */
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  }
-  
-  .box {
-	display: block;
-	background: white;
-	width: 70%;
-	height: 70%;
-	padding: 1rem;
-	border-radius: 1rem;
+	z-index: 1000; /* Ensures it appears above all other content */
+	animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in animation */
+	}
 	
-  }
-  .loginModalForm{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-  }
+.box {
+  background: white;
+  padding: 40px; /* Increased padding for spacious content */
+  border-radius: 12px; /* rounded corners */
+  width: 600px; /* Width for larger display */
+  height: auto; /* Adjust height dynamically based on content */
+  max-width: 90%; /* Ensure responsiveness */
+  max-height: 80vh; /* Prevent modal from exceeding viewport height */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow for depth */
+  position: relative;
+  z-index: 1010; /* Keeps modal content above overlay */
+  overflow: auto; /* Enables scrolling for overflowing content */
+  animation: slideIn 0.3s ease-in-out; /* Smooth slide-in animation */
+}
+.loginModalForm{
+  margin-bottom: 20px;
+}
+.loginModalForm label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #555;
+}
+.loginModalForm input {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
