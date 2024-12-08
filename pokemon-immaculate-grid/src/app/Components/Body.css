@@ -96,12 +96,14 @@
   
   /* Right Sidebar */
   .sidebar.right {
-	width: 250px;
+	width: 400px;
 	background-color: #44e9e9ce; /* Light red background */
 	color: #333; /* Dark text for contrast */
 	padding: 20px;
 	box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow on the left edge */
 	overflow-y: auto; /* Adds a scrollbar if content overflows */
+	display: inline-block;
+	text-align: center;
   }
   /* Right Sidebar Header */
   .sidebar.right h2 {

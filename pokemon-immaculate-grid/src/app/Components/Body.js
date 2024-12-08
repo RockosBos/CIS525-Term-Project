@@ -37,6 +37,8 @@ const Body = (props) => {
 	const [pokemonData, setPokemonData] = useState([]);
 	const [pokemonList, setPokemonList] = useState([]);
 	const [selectedCellData, setSelectedCellData] = useState({rowNum: null, colNum: null, rowProp: null, colProp: null, selectedPokemonNumber: null, selectedPokemonName: null, cellState: "neutral"});
+	const [score, setScore] = useState(0);
+	const [guesses, setGuesses] = useState(0);
 	
 
 	const [showChoosePokemonModal, setShowChoosePokemonModal] = useState(false);
@@ -75,6 +77,12 @@ const Body = (props) => {
 	const startGame = () => {
 		setGameStarted(true); // Start the game
 		setSelectedCellData({rowNum: null, colNum: null, rowProp: null, colProp: null, selectedPokemonNumber: null, selectedPokemonName: null, cellState: "neutral"});
+		if(difficulty == 'Easy'){
+			setGuesses(4);
+		}
+		else{
+			setGuesses(9);
+		}
 		console.log("Game Started!"); // Placeholder for any additional logic
 	};
 
@@ -110,13 +118,20 @@ const Body = (props) => {
 							<button onClick={() => handleDifficultyChange("Easy")}>Easy</button>
 							<button onClick={() => handleDifficultyChange("Hard")}>Hard</button>
 						</div>
-					<h2>Rules</h2>
-					<ol>
-						<li>Select the difficulty level.</li>
-						<li>Review the criteria above and to the left of each cell.</li>
-						<li>Select the Pokémon that matches both criteria.</li>
-					</ol>
-					<h2>High Score</h2>
+						<h2>Rules</h2>
+						<ol>
+							<li>Select the difficulty level.</li>
+							<li>Review the criteria above and to the left of each cell.</li>
+							<li>Select the Pokémon that matches both criteria.</li>
+						</ol>
+						<div className='score'>
+							<h2>High Score</h2>
+							<h2>{score}</h2>
+						</div>
+						<div className='guesses'>
+							<h2>Remaining Guesses</h2>
+							<h2>{guesses}</h2>
+						</div>
 					</aside>
 					<main className="main-content">
 						{gameStarted && (

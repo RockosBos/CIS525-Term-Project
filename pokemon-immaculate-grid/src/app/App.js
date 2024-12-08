@@ -13,7 +13,7 @@ function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [displayLogin, setDisplayLogin] = useState(false);
 	const [displaySignup, setDisplaySignup] = useState(false);
-	const [gridProps, setGridProps] = useState(['Grass', 'Fire', 'Water', 'NoEvolution', 'Starter', 'Legendary']);
+	const [gridProps, setGridProps] = useState(['Grass', 'Fire', 'Water', 'SingleType', 'Starter', '3rdEvolution']);
 	const [user, setUser] = useState("Guest");
 	const [isAdmin, setIsAdmin] = useState(false);
   

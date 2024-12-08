@@ -1,6 +1,7 @@
 import React, { Component, useState } from 'react';
 import "./Header.css";
 import Image from 'next/image';
+import "./Card.css";
 
 const Card = (props) => {
 	
@@ -8,7 +9,7 @@ const Card = (props) => {
 
 	return(
 		<>
-			<div className='Card'>
+			<div className='Card' id={props.id} key={props.id}>
 				<div className='CardHeader'>
 					<strong>{props.number} {props.name}</strong>
 				</div>
