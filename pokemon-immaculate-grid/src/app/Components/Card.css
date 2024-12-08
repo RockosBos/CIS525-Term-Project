@@ -1,0 +1,9 @@
+.Card{
+	display: inline-block;
+	background-color: white;
+	border-radius: 20%;
+	width: 150px;
+	margin: 5px;
+	text-align: center;
+	border: solid black 2px;
+}
