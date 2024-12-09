@@ -45,7 +45,11 @@
 .sidebar button:hover {
 	background-color: #0056b3;
 }
-
+/* Active (clicked) state */
+.sidebar button.active {
+	background-color: #b30000; /* Matches hover color */
+	color: white; /* Optional for consistent text contrast */
+  }
 /* Main content styling */
 .main-content {
 	flex-grow: 1;
