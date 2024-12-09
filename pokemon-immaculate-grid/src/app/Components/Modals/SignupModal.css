@@ -1,46 +1,92 @@
+/* Overlay covering the entire screen */
 .overlay {
-	position: fixed; /* Fixed position to cover the viewport */
+	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100vw; /* Full viewport width */
-	height: 100vh; /* Full viewport height */
-	background: rgba(0, 0, 0, 0.8); /* Slightly darker transparent background */
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 1000; /* Ensures it appears above all other content */
-	animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in animation */
-  }
-	
-  .box {
-	background: white;
-	padding: 40px; /* Increased padding for spacious content */
-	border-radius: 12px; /* rounded corners */
-	width: 600px; /* Width for larger display */
-	height: auto; /* Adjust height dynamically based on content */
-	max-width: 90%; /* Ensure responsiveness */
-	max-height: 80vh; /* Prevent modal from exceeding viewport height */
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow for depth */
-	position: relative;
-	z-index: 1010; /* Keeps modal content above overlay */
-	overflow: auto; /* Enables scrolling for overflowing content */
-	animation: slideIn 0.3s ease-in-out; /* Smooth slide-in animation */
-  }
-  .signupModalForm{
-	margin-bottom: 20px;
-  }
-  .signupModalForm label {
-	display: block;
-	font-weight: bold;
-	margin-bottom: 8px;
-	font-size: 16px;
-	color: #555;
-  }
-  .signupModalForm input {
 	width: 100%;
-	padding: 12px;
-	font-size: 14px;
-	border: 1px solid #ddd;
-	border-radius: 6px;
-	background-color: #f9f9f9;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000; /* Keeps the modal above other elements */
   }
+  
+  /* Modal box */
+  .box {
+	background-color: #ffffff;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	width: 400px;
+	max-width: 90%;
+	text-align: center;
+	z-index: 1100; /* Higher than the overlay */
+  }
+  
+  /* Form styling */
+  .signupModalForm {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+  }
+  
+  .signupModalForm label {
+	font-size: 14px;
+	font-weight: bold;
+	color: #333333;
+	text-align: left;
+  }
+  
+  .signupModalForm input[type="text"],
+  .signupModalForm input[type="password"] {
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	width: 100%;
+	box-sizing: border-box;
+  }
+  
+  .signupModalForm input[type="submit"] {
+	padding: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	background-color: #007bff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  .signupModalForm input[type="submit"]:hover {
+	background-color: #0056b3;
+  }
+  
+  .signupModalForm button {
+	padding: 10px;
+	font-size: 16px;
+	color: white;
+	background-color: #6c757d;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  .signupModalForm button:hover {
+	background-color: #5a6268;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 500px) {
+	.box {
+	  width: 90%; /* Adjust modal width for smaller screens */
+	  padding: 20px;
+	}
+  
+	.signupModalForm input[type="submit"],
+	.signupModalForm button {
+	  font-size: 14px;
+	}
+  }
+  

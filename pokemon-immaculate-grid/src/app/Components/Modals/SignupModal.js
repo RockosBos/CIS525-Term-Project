@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { CreateUser } from '@/app/api/Login/route';
 
-import './signupModal.css';
+import './SignupModal.css';
 
 const SignupModal = (props) => {
 
@@ -50,12 +50,13 @@ const SignupModal = (props) => {
 			{props.isOpen && (
 				<div className='overlay'>
 					<div className='box'>
+					<h2> Create Account</h2>
 						<form className='signupModalForm' onSubmit={onSubmit}>
 							<label htmlFor="username">Username:</label>
 							<input type='text' className='username' id='username' />
 							<label htmlFor="password">Password:</label>
 							<input type='password' className='password' id='password' />
-							<label htmlFor='submit'>Create: </label>
+							<label htmlFor='submit'> </label>
 							<input type='submit' id='submit'/>
 							<button onClick={cancel}>Cancel</button>
 						</form>

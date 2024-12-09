@@ -39,7 +39,6 @@ const LoginModal = (props) => {
 		setPassword(target.password.value);
 
 		props.setDisplayLogin(false);
-
 	}
 
 	const cancel = async (e) => {
@@ -51,12 +50,13 @@ const LoginModal = (props) => {
 			{props.isOpen && (
 				<div className='overlay'>
 					<div className='box'>
+						<h2> Log In</h2>
 						<form className='loginModalForm' onSubmit={onSubmit}>
 							<label htmlFor="username">Username:</label>
 							<input type='text' className='username' id='username' />
 							<label htmlFor="password">Password:</label>
 							<input type='password' className='password' id='password' />
-							<label htmlFor='submit'>Submit</label>
+							<label htmlFor='submit'></label>
 							<input type='submit' id='submit'/>
 							<button onClick={cancel}>Cancel</button>
 						</form>
