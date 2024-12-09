@@ -51,7 +51,7 @@ const Body = (props) => {
 	const [showResultModal, setShowResultModal] = useState(false);
 	const [columnLabels, setColumnLabels] = useState([props.gridProps[0], props.gridProps[1], props.gridProps[2]]);
 	const [rowLabels, setRowLabels] = useState([props.gridProps[3], props.gridProps[4], props.gridProps[5]]);
-
+	const [difficulty, setDifficulty] = useState("Easy"); // State to track difficulty level
 
 	useEffect(() => {
 		const data = async () => {
@@ -76,7 +76,6 @@ const Body = (props) => {
     );
     setBoard(newBoard);
   	};
-  	const [difficulty, setDifficulty] = useState("Easy"); // State to track difficulty level
 
   	const handleDifficultyChange = (level) => {
     	setDifficulty(level); // Update difficulty level
