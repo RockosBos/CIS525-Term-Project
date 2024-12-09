@@ -92,10 +92,6 @@ const Body = (props) => {
 	const startGame = () => {
 		setGameStarted(true); // Start the game
 		setSelectedCellData({rowNum: null, colNum: null, rowProp: null, colProp: null, selectedPokemonNumber: null, selectedPokemonName: null, cellState: "neutral"});
-		console.log("Game Started!"); // Placeholder for any additional logic
-	};
-
-	const resetBoard = () => {
 		if(difficulty == "Hard"){
 			setBoard(initialHardBoard); // Reset board to initial state
 			setScore(0);
@@ -110,6 +106,10 @@ const Body = (props) => {
 			setColumnLabels([props.gridProps[0], props.gridProps[1]]);
 			setRowLabels([props.gridProps[3], props.gridProps[4]]);
 		}
+		console.log("Game Started!"); // Placeholder for any additional logic
+	};
+
+	const resetBoard = () => {
 		setGameStarted(false); // Stop the game
 	};
 
@@ -138,7 +138,7 @@ const Body = (props) => {
 			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin} setIsAdmin={props.setIsAdmin} setUser={props.setUser} setLoggedIn={props.setLoggedIn}/>
 			<SignupModal isOpen={props.displaySignup} setDisplaySignup={props.setDisplaySignup}/>
 			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} setSelectedCellData={setSelectedCellData} pokemonList={pokemonList} columnLabels={columnLabels} rowLabels={rowLabels} score={score} setScore={setScore} guesses={guesses} setGuesses={setGuesses}/>
-			<ResultModal isOpen={showResultModal} setShowResultModal={setShowResultModal} score={score} seconds={seconds}/>
+			<ResultModal isOpen={showResultModal} setShowResultModal={setShowResultModal} score={score} seconds={seconds} guesses={guesses}/>
 			<div>
 				<div className="container">
 					<aside className="sidebar">
