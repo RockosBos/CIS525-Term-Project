@@ -19,22 +19,6 @@ const initialHardBoard = [
 	[null, null, null],
 	[null, null, null]
   ];
-//   const POKEMON_IMAGES = {
-// 	1: 'images/charizard.png',
-// 	2: 'images/lugia.png',
-// 	3: 'images/dragonite.png',
-// 	4: 'images/blastoise.png',
-// 	5: 'images/venusaur.png',
-// 	6: 'images/gengar.png',
-// 	7: 'images/mew.png',
-// 	8: 'images/mewtwo.png',
-// 	9: 'images/rhydon.png',
-//   };
-//   const pokemonDatabase = [
-// 	{ name: "Bulbasaur", type: "Grass/Poison", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" },
-// 	{ name: "Charmander", type: "Fire", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" },
-// 	{ name: "Squirtle", type: "Water", image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" },
-//   ];
 
 const Body = (props) => {
 	const [board, setBoard] = useState(initialHardBoard);
@@ -77,17 +61,23 @@ const Body = (props) => {
     setBoard(newBoard);
   	};
 
-  	const handleDifficultyChange = (level) => {
-    	setDifficulty(level); // Update difficulty level
-		if(level == 'Easy'){
+	  const handleDifficultyChange = (level, event) => {
+		setDifficulty(level); // Update difficulty level
+	
+		// Remove 'active' class from all buttons
+		const buttons = document.querySelectorAll(".difficulty-buttons button");
+		buttons.forEach(button => button.classList.remove("active"));
+	
+		// Add 'active' class to the clicked button
+		event.target.classList.add("active");
+	
+		if (level === "Easy") {
 			setGuesses(4);
-			
-		}
-		else{
+		} else {
 			setGuesses(9);
 		}
-    	console.log(`Difficulty set to: ${level}`); // Placeholder action
-  	}
+		console.log(`Difficulty set to: ${level}`); // Debugging information
+	};
 
 	const startGame = () => {
 		setGameStarted(true); // Start the game
@@ -143,9 +133,8 @@ const Body = (props) => {
 				<div className="container">
 					<aside className="sidebar">
 						{!gameStarted && <div className="difficulty-buttons">
-
-							<button onClick={() => handleDifficultyChange("Easy")}>Easy</button>
-							<button onClick={() => handleDifficultyChange("Hard")}>Hard</button>
+							<button onClick={(e) => handleDifficultyChange("Easy", e)}>Easy</button>
+							<button onClick={(e) => handleDifficultyChange("Hard", e)}>Hard</button>
 						</div>}
 						<h2>Rules</h2>
 						<ol>
