@@ -31,6 +31,7 @@ const ChoosePokemonModal = (props) => {
 						selectedPokemonName: result[0].Pokemon,
 						cellState: "Correct"
 					});
+					props.setScore(props.score + 1);
 				}
 				else{
 					props.setSelectedCellData({
@@ -44,6 +45,7 @@ const ChoosePokemonModal = (props) => {
 					});
 					alert("Incorrect Guess");
 				}
+				props.setGuesses(props.guesses - 1);
 			}
 
 		);

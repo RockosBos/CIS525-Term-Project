@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select'
 import {GET} from'../api/Pokemon/route'
-import {LoginGET} from '../api/Login/route'
+import {LoginGET, setAdmin} from '../api/Login/route'
 
 import './Admin.css';
 
@@ -33,12 +33,6 @@ const propData = [
 	{value: 'Legendary', label: 'Legendary'},
 	{value: 'Mythical', label: 'Mythical'},
 ];
-	
-const pokemonDummyData = [
-	{value: 'Charmander', label: 'Charmander'},
-	{value: 'Squirtle', label: 'Squirtle'},
-	{value: 'Bulbasaur', label: 'Bulbasaur'}
-];
 
 const adminFlag = [
 	{value: 1, label: 'Yes'},
@@ -53,6 +47,8 @@ const Admin = (props) => {
 	const [pokemonList, setPokemonList] = useState([{}]);
 	const [userData, setUserData] = useState([]);
 	const [userList, setUserList] = useState([{}]);
+	const [user, setUser] = useState('');
+	const [adminFlagChoice, setAdminFlagChoice] = useState(0);
 
 	useEffect(() => {
 		const data = async () => {
@@ -69,11 +65,18 @@ const Admin = (props) => {
 		}
 
 		data();
-	}, [LoginGET, setUserData]);
+	}, []);
 
 	const saveProps = (e) => {
 		e.preventDefault();
 		props.setGridProps(gridProps);
+		alert("Grid Properties Updated");
+	}
+
+	const updateAdmin = (e) => {
+		e.preventDefault();
+		setAdmin({adminFlag: adminFlagChoice, username: user}).then((res) => {})
+		alert("Admin Roles Updated");
 	}
 
 	
@@ -133,13 +136,12 @@ const Admin = (props) => {
 				<h2 className='customPuzzleHeader'>Edit Users</h2>
 					<div className='userOptions'>
 						<p>Username:</p>
-						<div className='selectUser'><Select className="selectUserBox" options={userList} /></div>
+						<div className='selectUser'><Select className="selectUserBox" options={userList} onChange={(choice) => {setUser(choice.value)}}/></div>
 						<p>Is Admin:</p>
-						<div className='selectAdminFlag'><Select className="selectUserFlag" options={adminFlag} /></div>
+						<div className='selectAdminFlag'><Select className="selectUserFlag" options={adminFlag} onChange={(choice) => {setAdminFlagChoice(choice.value)}}/></div>
 					</div>
 				<div className='propButtons'>
-					<button className='propSaveButton'>Save</button>
-					<button className='propResetButton'>Reset</button>
+					<button className='propSaveButton' onClick={updateAdmin}>Save</button>
 				</div>
 			</div>
 			

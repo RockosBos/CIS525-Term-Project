@@ -8,8 +8,13 @@ import SignupModal from './Modals/SignupModal';
 import ChoosePokemonModal from './Modals/ChoosePokemonModal';
 
 import {GET} from'../api/Pokemon/route';
+import ResultModal from './Modals/ResultModal';
 
-const initialBoard = [
+const initialEasyBoard = [
+	[null, null],
+	[null, null]
+]
+const initialHardBoard = [
 	[null, null, null],
 	[null, null, null],
 	[null, null, null]
@@ -32,14 +37,20 @@ const initialBoard = [
 //   ];
 
 const Body = (props) => {
-	const [board, setBoard] = useState(initialBoard);
+	const [board, setBoard] = useState(initialHardBoard);
  	const [gameStarted, setGameStarted] = useState(false); // Tracks if the game has started
 	const [pokemonData, setPokemonData] = useState([]);
 	const [pokemonList, setPokemonList] = useState([]);
 	const [selectedCellData, setSelectedCellData] = useState({rowNum: null, colNum: null, rowProp: null, colProp: null, selectedPokemonNumber: null, selectedPokemonName: null, cellState: "neutral"});
+	const [score, setScore] = useState(0);
+	const [guesses, setGuesses] = useState(9);
+	const [seconds, setSeconds] = useState(0);
 	
 
 	const [showChoosePokemonModal, setShowChoosePokemonModal] = useState(false);
+	const [showResultModal, setShowResultModal] = useState(false);
+	const [columnLabels, setColumnLabels] = useState([props.gridProps[0], props.gridProps[1], props.gridProps[2]]);
+	const [rowLabels, setRowLabels] = useState([props.gridProps[3], props.gridProps[4], props.gridProps[5]]);
 
 
 	useEffect(() => {
@@ -56,8 +67,8 @@ const Body = (props) => {
 	}, [gameStarted]);
 
   	// Define column and row labels
-  	const columnLabels = [props.gridProps[0], props.gridProps[1], props.gridProps[2]]; // Example labels
-  	const rowLabels = [props.gridProps[3], props.gridProps[4], props.gridProps[5]]; // Example labels
+  	//const columnLabels = [props.gridProps[0], props.gridProps[1], props.gridProps[2]]; // Example labels
+  	//const rowLabels = [props.gridProps[3], props.gridProps[4], props.gridProps[5]]; // Example labels
 
   	const updateCell = (row, col, value) => {
     	const newBoard = board.map((r, rowIndex) =>
@@ -69,6 +80,13 @@ const Body = (props) => {
 
   	const handleDifficultyChange = (level) => {
     	setDifficulty(level); // Update difficulty level
+		if(level == 'Easy'){
+			setGuesses(4);
+			
+		}
+		else{
+			setGuesses(9);
+		}
     	console.log(`Difficulty set to: ${level}`); // Placeholder action
   	}
 
@@ -79,7 +97,20 @@ const Body = (props) => {
 	};
 
 	const resetBoard = () => {
-		setBoard(initialBoard); // Reset board to initial state
+		if(difficulty == "Hard"){
+			setBoard(initialHardBoard); // Reset board to initial state
+			setScore(0);
+			setGuesses(9);
+			setColumnLabels([props.gridProps[0], props.gridProps[1], props.gridProps[2]]);
+			setRowLabels([props.gridProps[3], props.gridProps[4], props.gridProps[5]]);
+		}
+		else{
+			setBoard(initialEasyBoard); // Reset board to initial state
+			setScore(0);
+			setGuesses(4);
+			setColumnLabels([props.gridProps[0], props.gridProps[1]]);
+			setRowLabels([props.gridProps[3], props.gridProps[4]]);
+		}
 		setGameStarted(false); // Stop the game
 	};
 
@@ -97,26 +128,40 @@ const Body = (props) => {
 		}
 	}
 
+	useEffect(() => {
+		if(guesses < 1){
+			setShowResultModal(true);
+		}
+	}, [guesses]);
+
 	return (
 		<>
 			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin} setIsAdmin={props.setIsAdmin} setUser={props.setUser} setLoggedIn={props.setLoggedIn}/>
 			<SignupModal isOpen={props.displaySignup} setDisplaySignup={props.setDisplaySignup}/>
-			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} setSelectedCellData={setSelectedCellData} pokemonList={pokemonList} columnLabels={columnLabels} rowLabels={rowLabels}/>
+			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} setSelectedCellData={setSelectedCellData} pokemonList={pokemonList} columnLabels={columnLabels} rowLabels={rowLabels} score={score} setScore={setScore} guesses={guesses} setGuesses={setGuesses}/>
+			<ResultModal isOpen={showResultModal} setShowResultModal={setShowResultModal} score={score} seconds={seconds}/>
 			<div>
 				<div className="container">
 					<aside className="sidebar">
-						<div className="difficulty-buttons">
+						{!gameStarted && <div className="difficulty-buttons">
 
 							<button onClick={() => handleDifficultyChange("Easy")}>Easy</button>
 							<button onClick={() => handleDifficultyChange("Hard")}>Hard</button>
+						</div>}
+						<h2>Rules</h2>
+						<ol>
+							<li>Select the difficulty level.</li>
+							<li>Review the criteria above and to the left of each cell.</li>
+							<li>Select the Pokémon that matches both criteria.</li>
+						</ol>
+						<div className='score'>
+							<h2>Score</h2>
+							<h2>{score}</h2>
 						</div>
-					<h2>Rules</h2>
-					<ol>
-						<li>Select the difficulty level.</li>
-						<li>Review the criteria above and to the left of each cell.</li>
-						<li>Select the Pokémon that matches both criteria.</li>
-					</ol>
-					<h2>High Score</h2>
+						<div className='guesses'>
+							<h2>Remaining Guesses</h2>
+							<h2>{guesses}</h2>
+						</div>
 					</aside>
 					<main className="main-content">
 						{gameStarted && (
@@ -134,7 +179,8 @@ const Body = (props) => {
 							</div>
 						)}
 
-						{gameStarted && <Timer />} {/* Show timer only when game starts */}
+						{gameStarted && <Timer seconds={seconds} setSeconds={setSeconds}/>} {/* Show timer only when game starts */}
+						{gameStarted && <h2>{`Difficulty ${difficulty}`}</h2>}
 						{gameStarted ? (
 							<div className="board-container">
 								<div className="column-labels">

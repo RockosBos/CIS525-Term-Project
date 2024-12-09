@@ -156,11 +156,71 @@
 	font-size: 18px;
 	cursor: pointer;
 	gap: 10px;
-}
-
-/* Right sidebar styling */
-.sidebar_right {
+  
+  /* Sidebar styling */
+  .sidebar {
+	width: 350px; /* Fixed width for the sidebar */
+	background-color: #f0f0f0;
+	color: #333;
+	padding: 20px;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+	display: flex;
+	flex-direction: column;
+	gap: 10px; /* Space between sidebar items */
+	overflow-y: auto; /* Adds a vertical scrollbar if content overflows */
+  }
+  
+  /* Sidebar heading styling */
+  .sidebar h2 {
+	font-size: 24px;
+	color: #444;
+	margin-top: 0;
+  }
+  
+  /* Right Sidebar */
+  .sidebar.right {
 	width: 20%;
+	background-color: #44e9e9ce; /* Light red background */
+	color: #333; /* Dark text for contrast */
+	padding: 20px;
+	box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow on the left edge */
+	overflow-y: auto; /* Adds a scrollbar if content overflows */
+	display: inline-block;
+	text-align: center;
+  }
+  /* Right Sidebar Header */
+  .sidebar.right h2 {
+	color: #000000; /* Darker red for the header text */
+	font-size: 20px;
+	margin-bottom: 15px;
+  }
+  /* Pokémon Item Styling */
+  .pokemon-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 15px;
+  }
+  
+  .pokemon-item img {
+	width: 50px;
+	height: 50px;
+	object-fit: contain;
+  }
+  
+  .pokemon-item strong {
+	font-size: 16px;
+	margin-bottom: 5px;
+  }
+  
+  .pokemon-item p {
+	margin: 0;
+	font-size: 14px;
+	color: #555;
+  }
+  /* Main content styling */
+  .main-content {
+	position: relative; /* Make main-content a positioning context */
 	padding: 20px;
 	background-color: #e9ecef;
 	box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
