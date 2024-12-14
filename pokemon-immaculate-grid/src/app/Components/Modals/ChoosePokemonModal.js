@@ -8,15 +8,6 @@ const ChoosePokemonModal = (props) => {
 	//let debugText = `Row: ${props.selectedCellData.rowNum}  Col: ${props.selectedCellData.colNum}`;
 	const [pokemonSelection, setPokemonSelection] = useState('');
 
-	// useEffect(() => {
-	// 	const data = async () => {
-	// 		console.log("test");
-	// 	};
-
-	// 	data();
-
-	// }, []);
-
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		submitGuess({rowProp: props.selectedCellData.rowProp, colProp: props.selectedCellData.colProp, selection: pokemonSelection}).then(

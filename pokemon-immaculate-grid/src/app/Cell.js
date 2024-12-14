@@ -11,7 +11,6 @@ const Cell = (props) =>  {
 	const imageString = `/pokemon/${cellPokemonNumber}_${cellPokemon}.png`
 
 	useEffect(() => {
-		console.log(props.selectedCellData.selectedPokemonName);
 		if((props.selectedCellData.rowNum == props.cellNum.rowIndex) && (props.selectedCellData.colNum == props.cellNum.colIndex)){
 			setCellPokemon(props.selectedCellData.selectedPokemonName);
 			setCellPokemonNumber(props.selectedCellData.selectedPokemonNumber);

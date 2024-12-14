@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2024 at 12:23 AM
+-- Generation Time: Dec 14, 2024 at 07:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,17 +30,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `login` (
   `Username` varchar(20) NOT NULL,
   `Password` varchar(20) NOT NULL,
-  `Admin` tinyint(1) NOT NULL DEFAULT 0
+  `Admin` tinyint(1) NOT NULL DEFAULT 0,
+  `Highscore` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`Username`, `Password`, `Admin`) VALUES
-('nkessey', 'nkesseypassword', 1),
-('user', 'password', 1),
-('testuser', 'password', 0);
+INSERT INTO `login` (`Username`, `Password`, `Admin`, `Highscore`) VALUES
+('nkessey', 'nkesseypassword', 1, 9),
+('user', 'password', 1, 0),
+('testuser', 'password', 0, 0),
+('demouser', 'password', 0, 0);
 
 -- --------------------------------------------------------
 
