@@ -76,7 +76,6 @@ const Body = (props) => {
 		} else {
 			setGuesses(9);
 		}
-		console.log(`Difficulty set to: ${level}`); // Debugging information
 	};
 
 	const startGame = () => {
@@ -96,16 +95,10 @@ const Body = (props) => {
 			setColumnLabels([props.gridProps[0], props.gridProps[1]]);
 			setRowLabels([props.gridProps[3], props.gridProps[4]]);
 		}
-		console.log("Game Started!"); // Placeholder for any additional logic
 	};
 
 	const resetBoard = () => {
 		setGameStarted(false); // Stop the game
-	};
-
-	const handleAdminClick = () => {
-		console.log("Admin button clicked"); // Placeholder for admin functionality
-		// Add admin-specific actions here
 	};
 
 	const toggleGameStartedState = () => {

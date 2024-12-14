@@ -23,7 +23,9 @@ const LoginModal = (props) => {
 					}
 				}
 				else{
-
+					if(username || password){
+						alert("Invalid Username or Password. Please try again.")
+					}
 				}
 			});
 		};
