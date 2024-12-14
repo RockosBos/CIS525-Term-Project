@@ -8,6 +8,7 @@ import SignupModal from './Modals/SignupModal';
 import ChoosePokemonModal from './Modals/ChoosePokemonModal';
 
 import {GET} from'../api/Pokemon/route';
+import {storeUserHighScore} from '../api/Login/route'
 import ResultModal from './Modals/ResultModal';
 
 const initialEasyBoard = [
@@ -49,6 +50,17 @@ const Body = (props) => {
 		data();
 	
 	}, [gameStarted]);
+
+	useEffect(() => {
+		console.log(props.highScore);
+		if(props.highScore <= score){
+			props.setHighScore(score);
+			if(props.user != "Guest"){
+				console.log(`Setting High Score for ${props.user} at ${props.highScore}`)
+				storeUserHighScore({username: props.user, highScore: props.highScore});
+			}
+		}
+	}, [score]);
 
   	// Define column and row labels
   	//const columnLabels = [props.gridProps[0], props.gridProps[1], props.gridProps[2]]; // Example labels
@@ -125,7 +137,7 @@ const Body = (props) => {
 
 	return (
 		<>
-			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin} setIsAdmin={props.setIsAdmin} setUser={props.setUser} setLoggedIn={props.setLoggedIn}/>
+			<LoginModal isOpen={props.displayLogin} setDisplayLogin={props.setDisplayLogin} setIsAdmin={props.setIsAdmin} setUser={props.setUser} setLoggedIn={props.setLoggedIn} setHighScore={props.setHighScore}/>
 			<SignupModal isOpen={props.displaySignup} setDisplaySignup={props.setDisplaySignup}/>
 			<ChoosePokemonModal isOpen={showChoosePokemonModal} pokemonData={pokemonData} setShowChoosePokemonModal={setShowChoosePokemonModal} selectedCellData={selectedCellData} setSelectedCellData={setSelectedCellData} pokemonList={pokemonList} columnLabels={columnLabels} rowLabels={rowLabels} score={score} setScore={setScore} guesses={guesses} setGuesses={setGuesses}/>
 			<ResultModal isOpen={showResultModal} setShowResultModal={setShowResultModal} score={score} seconds={seconds} guesses={guesses}/>
@@ -149,6 +161,10 @@ const Body = (props) => {
 						<div className='guesses'>
 							<h2>Remaining Guesses</h2>
 							<h2>{guesses}</h2>
+						</div>
+						<div className='highScore'>
+							<h2>High Score for {props.user}</h2>
+							<h2>{props.highScore}</h2>
 						</div>
 					</aside>
 					<main className="main-content">
