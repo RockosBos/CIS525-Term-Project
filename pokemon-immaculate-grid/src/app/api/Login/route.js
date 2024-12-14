@@ -48,7 +48,7 @@ export async function LoginUser(req) {
 
 		//get_exp_query = 'SELECT * FROM login';
 		
-		get_exp_query = `SELECT Username, Admin FROM login WHERE Username = '${req.username}' AND Password = '${req.password}'`;
+		get_exp_query = `SELECT Username, Admin, Highscore FROM login WHERE Username = '${req.username}' AND Password = '${req.password}'`;
 
 		let values = [];
 
@@ -83,7 +83,7 @@ export async function CreateUser(req){
 
 			//get_exp_query = 'SELECT * FROM login';
 			
-			get_exp_query = `INSERT INTO login (Username, Password, Admin) VALUES ('${req.username}' , '${req.password}', '0')`;
+			get_exp_query = `INSERT INTO login (Username, Password, Admin, Highscore) VALUES ('${req.username}' , '${req.password}', '0', '0')`;
 
 			let values = [];
 
@@ -150,6 +150,38 @@ export async function setAdmin(req){
 		let get_exp_query = '';
 
 		get_exp_query = `UPDATE login SET Admin = ${req.adminFlag} WHERE Username = '${req.username}'`;
+		console.log(get_exp_query);
+
+		let values = [];
+
+		const [results, fields] = await connection.execute(get_exp_query, values);
+
+		connection.end();
+
+		//return NextResponse.json({fields: fields.map((f) => f.name), results});
+		const response = NextResponse.json({fields: fields.map((f) => f.name), results});
+
+		return JSON.parse(JSON.stringify(results));
+	}
+	catch(err){
+		console.log("error: ", err.message);
+
+		const response = {
+			error: err.message,
+			returnedStatus: 200
+		}
+
+		return NextResponse.json(response, {status: 200})
+	}
+}
+
+export async function storeUserHighScore(req){
+	try{
+		const connection = await mysql.createConnection(connectionParams);
+
+		let get_exp_query = '';
+
+		get_exp_query = `UPDATE login SET Highscore = ${req.highScore} WHERE Username = '${req.username}'`;
 		console.log(get_exp_query);
 
 		let values = [];

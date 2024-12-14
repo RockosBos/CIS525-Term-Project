@@ -15,6 +15,8 @@ const LoginModal = (props) => {
 				if(res.length){
 					props.setUser(res[0].Username);
 					props.setLoggedIn(true);
+					console.log(res)
+					props.setHighScore(res[0].Highscore);
 					if(res[0].Admin){
 						props.setIsAdmin(1);
 					}
