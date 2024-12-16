@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b main -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -19,5 +19,4 @@
     "react-select": "^5.8.3",
     "typescript": "^5.7.2"
   },
-  "homepage": "https://rockosbos.github.io/pokemon-immaculate-grid"
 }
