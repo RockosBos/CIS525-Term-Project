@@ -1,5 +1,4 @@
 // import the Request and Response classes
-'use server'
 
 import { NextResponse, NextRequest } from 'next/server'
 import mysql from  'mysql2/promise';
