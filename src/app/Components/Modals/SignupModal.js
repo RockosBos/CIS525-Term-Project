@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { CreateUser } from '@/app/api/Login/route';
+import { CreateUser } from '../../api/Login/route';
 
 import './SignupModal.css';
 

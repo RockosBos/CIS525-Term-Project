@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select'
-import { submitGuess } from '@/app/api/Pokemon/route';
+import { submitGuess } from '../../api/Pokemon/route';
 import './ChoosePokemonModal.css';
 
 const ChoosePokemonModal = (props) => {

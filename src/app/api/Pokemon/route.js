@@ -6,6 +6,7 @@ import mysql from  'mysql2/promise';
 import { GetDBSettings, IDBSettings } from '@/sharedCode/common'
 let connectionParams = GetDBSettings();
 
+
 // define and export the GET handler function
 
 export async function GET(Request) {
