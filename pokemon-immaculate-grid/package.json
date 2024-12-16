@@ -18,6 +18,5 @@
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "react-select": "^5.8.3",
     "typescript": "^5.7.2"
-  },
-  "homepage": "https://rockosbos.github.io/"
+  }
 }
