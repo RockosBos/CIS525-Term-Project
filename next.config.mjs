@@ -13,7 +13,7 @@ const nextConfig = {
 		password: 'h4bioKQrCquoAwwCPiV9',
 		database: 'pokemon-grid',
 	},
-	output: "export",
+	//output: "export",
 	basePath: "/pokemon-immaculate-grid",
 };
 
