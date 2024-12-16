@@ -8,6 +8,8 @@ let connectionParams = GetDBSettings();
 
 // define and export the GET handler function
 
+export const dynamic = 'force-static';
+
 export async function GET(Request) {
 	try{
 		const connection = await mysql.createConnection(connectionParams);
