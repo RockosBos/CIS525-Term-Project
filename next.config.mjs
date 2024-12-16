@@ -13,7 +13,6 @@ const nextConfig = {
 		password: 'h4bioKQrCquoAwwCPiV9',
 		database: 'pokemon-grid',
 	},
-	basepath: "/",
 	output: "export",
 	reactStrictMode: false,
 };
