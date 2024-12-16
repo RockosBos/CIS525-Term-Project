@@ -15,7 +15,6 @@ const nextConfig = {
 	},
 	output: "export",
 	basePath: "/pokemon-immaculate-grid",
-	reactStrictMode: false,
 };
 
 export default nextConfig;

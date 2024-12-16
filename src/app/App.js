@@ -7,6 +7,8 @@ import Body from './Components/Body';
 import Admin from './Components/Admin';
 import './App.css';
 
+export const dynamic = 'force-static';
+
 function App() {
 
 	const [adminPage, setAdminPage] = useState(false);
