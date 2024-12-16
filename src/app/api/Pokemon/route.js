@@ -1,4 +1,5 @@
 // import the Request and Response classes
+'use server'
 
 import { NextResponse, NextRequest } from 'next/server'
 import mysql from  'mysql2/promise';
@@ -6,8 +7,6 @@ import { GetDBSettings, IDBSettings } from '@/sharedCode/common'
 let connectionParams = GetDBSettings();
 
 // define and export the GET handler function
-
-export const dynamic = 'force-static';
 
 export async function GET(Request) {
 	try{
